@@ -9,10 +9,10 @@ namespace ProjetoUC
     class Map
     {
         static char[,] mapa;
-        static int largura = 80;
-        static int altura = 20;
-        static int playerX = 1;
-        static int playerY = 1;
+        static int largura = 30;
+        static int altura = 10;
+        static int playerXini = 3;
+        static int playerYini = 3;
         static bool jogando = true;
 
 
@@ -36,8 +36,8 @@ namespace ProjetoUC
         // var tecla = Console.ReadKey(true).Key;
         public static void atualizarPosicao(ConsoleKey tecla)
         {
-            int tempX = playerX;
-            int tempY = playerY;
+            int tempX = playerXini;
+            int tempY = playerYini;
 
             switch (tecla)
             {
@@ -57,10 +57,10 @@ namespace ProjetoUC
 
             if (mapa[tempX, tempY] != '#')
             {
-                mapa[playerX, playerY] = ' ';
+                mapa[playerXini, playerYini] = ' ';
                 mapa[tempX, tempY] = '@';
-                playerX = tempX;
-                playerY = tempY;
+                playerXini = tempX;
+                playerYini = tempY;
             }
         }
 
@@ -95,7 +95,8 @@ namespace ProjetoUC
                 }
             }
 
-            mapa[playerX, playerY] = '@';
+            mapa[playerXini, playerYini] = '@';
+            mapa[1, 1] = 'H';
         }
     }
 }

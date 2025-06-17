@@ -75,7 +75,7 @@ namespace ProjetoUC
                     case 0:
                         Console.WriteLine("""
 
-                                Ok, até a proxima! Volte breve!
+                                Ok, até a proxima! Volte logo!
 
                             """);
                         break;
@@ -85,11 +85,11 @@ namespace ProjetoUC
                                 Não entendi, Digite novamente algo valido!
 
                             """);
-                        break; 
+                        break;
 
-                } //exibirMenu();
+                }//switch
                 Console.WriteLine("============================================================");
-                //switch
+                
             } //while
 
         } //main
