@@ -55,6 +55,14 @@ namespace ProjetoUC
                         Console.WriteLine("mapa");
                         map.gerarMapa();
                         
+                        clean();
+                        Console.WriteLine("""
+                                Voltando a superficie.....
+                                Seu inventário depois da mineração: 
+                            """);
+                        jogo.showInv();
+
+                        
                         break;
                     case 2:
                         clean();

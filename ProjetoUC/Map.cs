@@ -8,34 +8,58 @@ namespace ProjetoUC
 {
     class Map
     {
+        //mapa vazio
         static char[,] mapa;
-        static int largura = 30;
-        static int altura = 10;
+
+        //AxL do mapa 
+        static int largura = 40;
+        static int altura = 15;
+
+        //Ponto inicial do player
         static int playerXini = 3;
         static int playerYini = 3;
+
+        //var do loop do mapa (feio, eu sei)
         static bool jogando = true;
 
+        public void gerarMapa() //a função principal de mapa
+        { 
+            iniciarMapa(); //popule
+            Console.Clear();
+            Console.WriteLine("""
+                ============================================================
+                    Sobre a mineração:
+                        @ - Você
+                        # - Parede 
+                        H - Escada (voltar a superficie)
+                        * - Minério
 
-        public void gerarMapa()
-        { //precisa da var jogando
-            iniciarMapa();
+                    Movimente-se com WASD
+
+                - aperte qualquer tecla para continuar.
+
+                ============================================================
+                """);
+            Console.ReadKey(true);
 
             while (jogando)
             {
                 Console.Clear();
-                desenharMapa();
+                desenharMapa(); //exiba
 
-                var tecla = Console.ReadKey(true).Key;
+                var tecla = Console.ReadKey(true).Key; //le a tecla do usuário
 
-                atualizarPosicao(tecla);
+                atualizarPosicao(tecla); //usa a tecla para modificar a matriz
 
             }
+
         }
 
 
         // var tecla = Console.ReadKey(true).Key;
         public static void atualizarPosicao(ConsoleKey tecla)
         {
+            //
             int tempX = playerXini;
             int tempY = playerYini;
 
@@ -54,7 +78,10 @@ namespace ProjetoUC
                     tempY++;
                     break;
             }
-
+            if (mapa[tempX, tempY] == 'H')
+            {
+                jogando = false;
+            }
             if (mapa[tempX, tempY] != '#')
             {
                 mapa[playerXini, playerYini] = ' ';
