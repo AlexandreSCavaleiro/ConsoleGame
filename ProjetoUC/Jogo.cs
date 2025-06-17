@@ -100,9 +100,19 @@ namespace ProjetoUC
 
         public void showInv() //usa o metodo .show() de drop para exibir todos os drops no inventário
         {
-            foreach (var item in inventario)
+            if (inventario.Count > 0)
             {
-                item.show();
+                foreach (var item in inventario)
+                {
+                    item.show();
+                }
+            }
+            else {
+                Console.WriteLine("""
+                    
+                    Seu inventário ainda está vazio!
+
+                """);
             }
         }
 

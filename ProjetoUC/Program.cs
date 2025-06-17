@@ -11,6 +11,8 @@ namespace ProjetoUC
 
         public static void Main()
         {
+            Jogo jogo = new Jogo();
+
             Console.WriteLine("""
                  =================  MENU  =================
                 
@@ -32,6 +34,17 @@ namespace ProjetoUC
                 case 1: //1. Iniciar mineração.
                     //TODO start mapping.
                     Console.WriteLine("mapa");
+                    break;
+                case 2:
+                    Console.WriteLine($"""
+
+                            Voce tem {jogo.totalPontos()} pontos.
+
+                        """);
+                    
+                    break;
+                case 3:
+                    jogo.showInv();
                     break;
             }
 
