@@ -8,13 +8,10 @@ namespace ProjetoUC
 {
     class Program
     {
-
-        public static void Main()
+        public static void exibirMenu()
         {
-            Jogo jogo = new Jogo();
-
             Console.WriteLine("""
-                 =================  MENU  =================
+                 =========================== Menu ===========================
                 
                     1. Iniciar mineração.
                     2. Meus pontos.
@@ -22,32 +19,79 @@ namespace ProjetoUC
 
                     0. Sair.
 
-                 ==========================================
+                 ============================================================
                  """);
+        }
 
-            Console.Write("- Selecione uma opção: ");
+        public static void clean()
+        {
+            Console.Clear();
+            exibirMenu();
+            //Console.WriteLine("============================================================");
+        }
 
-            int op = Convert.ToInt32(Console.ReadLine());
+        public static void Main()
+        {
+            Jogo jogo = new Jogo();
+            Map map = new Map();   
+            int op = -1;
 
-            switch (op) {
+            exibirMenu();
 
-                case 1: //1. Iniciar mineração.
-                    //TODO start mapping.
-                    Console.WriteLine("mapa");
-                    break;
-                case 2:
-                    Console.WriteLine($"""
+            while (op!=0)
+            {
+
+                Console.Write("- Selecione uma opção: ");
+
+                op = Convert.ToInt32(Console.ReadLine());
+
+                switch (op)
+                {
+
+                    case 1: //1. Iniciar mineração.
+                            //TODO start mapping.
+
+                        clean();
+                        Console.WriteLine("mapa");
+                        map.gerarMapa();
+                        
+                        break;
+                    case 2:
+                        clean();
+                        Console.WriteLine($"""
 
                             Voce tem {jogo.totalPontos()} pontos.
 
                         """);
-                    
-                    break;
-                case 3:
-                    jogo.showInv();
-                    break;
-            }
 
-        }
-    }
+                        
+                        break;
+                    case 3:
+                        clean();
+                        jogo.showInv();
+
+                        
+                        break;
+                    case 0:
+                        Console.WriteLine("""
+
+                                Ok, até a proxima! Volte breve!
+
+                            """);
+                        break;
+                    default:
+                        Console.WriteLine("""
+
+                                Não entendi, Digite novamente algo valido!
+
+                            """);
+                        break; 
+
+                } //exibirMenu();
+                Console.WriteLine("============================================================");
+                //switch
+            } //while
+
+        } //main
+    } //classe
 }

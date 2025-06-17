@@ -16,7 +16,7 @@ namespace ProjetoUC
         static bool jogando = true;
 
 
-        public static void gerarMapa()
+        public void gerarMapa()
         { //precisa da var jogando
             iniciarMapa();
 
