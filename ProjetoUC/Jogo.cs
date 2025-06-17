@@ -28,23 +28,16 @@ namespace ProjetoUC
             * futuramente, a ideia é carregar de um Json
             */
 
-            Drop mine1 = new Drop("Carvão", 1, 1);
-            Drop mine2 = new Drop("Cobre", 2, 2);
-            Drop mine3 = new Drop("Ferro", 3, 5);
-            Drop mine4 = new Drop("Ouro", 4, 10);
-            mineriosList.Add(mine1);
-            mineriosList.Add(mine2);
-            mineriosList.Add(mine3);
-            mineriosList.Add(mine4);
+            mineriosList.Add(new Drop("Carvão", 1, 1));
+            mineriosList.Add(new Drop("Cobre", 2, 2));
+            mineriosList.Add(new Drop("Ferro", 3, 5));
+            mineriosList.Add(new Drop("Ouro", 4, 10));
 
-            Drop joia1 = new Drop("Esmeralda", 5, 30);
-            Drop joia2 = new Drop("Safira", 6, 50);
-            Drop joia3 = new Drop("Rubi", 7, 80);
-            Drop joia4 = new Drop("Diamante", 8, 100);
-            joiasList.Add(joia1);
-            joiasList.Add(joia2);
-            joiasList.Add(joia3);
-            joiasList.Add(joia4);
+      
+            joiasList.Add(new Drop("Esmeralda", 5, 30));
+            joiasList.Add(new Drop("Safira", 6, 50));
+            joiasList.Add(new Drop("Rubi", 7, 80));
+            joiasList.Add(new Drop("Diamante", 8, 100));
 
         }
 
