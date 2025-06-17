@@ -28,7 +28,7 @@ namespace ProjetoUC
             Console.Clear();
             exibirMenu();
             //Console.WriteLine("============================================================");
-        }
+        } 
 
         public static void Main()
         {
