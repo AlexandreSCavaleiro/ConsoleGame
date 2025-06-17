@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ProjetoUC
@@ -47,27 +48,30 @@ namespace ProjetoUC
 
         }
 
-        public Drop pickDrop()
+        public Drop pickDrop() //Seleciona um drop dentro dos vetores 
         {
-            int chance = rand.Next(0, 100);
-            int iddropJoia = rand.Next(0, joiasList.Count);
-            int iddropMine = rand.Next(0, mineriosList.Count);
+            int chance = rand.Next(0, 100); //gera uma chance de drop
+            int iddrop;
 
             Drop drop;
 
-            if (chance < this.raridadeJoia)
+            if (chance < this.raridadeJoia) // se a chance de drop for maior q a raridade da joia
             {
-                drop = mineriosList[iddropMine];
+                iddrop = rand.Next(0, mineriosList.Count); //escolhe uma das joias escolhendo um indice aleatorio
+                drop = mineriosList[iddrop];
+
+                //exibe
                 Console.WriteLine($"""
                         Você foi minerar e encontrou
                         Um Minerio: {drop.nome} Você ganhou: +{drop.valor}
 
                     """);
-                inventario.Add(drop);
+                inventario.Add(drop); //adiciona no inventário
             }
-            else
+            else // se a chance for menor q a da raridade da joia, faz a mesma coisa mas com o vetor de minérios.
             {
-                drop = joiasList[iddropJoia];
+                iddrop = rand.Next(0, joiasList.Count);
+                drop = joiasList[iddrop];
                 Console.WriteLine($"""
                         Você foi minerar e encontrou
                         Uma Jóia Rara: {drop.nome} Você ganhou: +{drop.valor}
@@ -78,10 +82,10 @@ namespace ProjetoUC
 
             //drop.show();
 
-            return drop;
+            return drop; //retorna o drop
         }
 
-        public double totalPontos()
+        public double totalPontos() //retorna a soma total de pontos dos itens no inventario
         {
             double total = 0;
 
@@ -94,7 +98,7 @@ namespace ProjetoUC
 
         }
 
-        public void showInv()
+        public void showInv() //usa o metodo .show() de drop para exibir todos os drops no inventário
         {
             foreach (var item in inventario)
             {
