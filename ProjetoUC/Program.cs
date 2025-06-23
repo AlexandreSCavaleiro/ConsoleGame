@@ -53,7 +53,7 @@ namespace ProjetoUC
 
                         clean();
                         map.gerarMapa();
-                        
+                        map.iniciarMapa();
                         clean();
                         Console.WriteLine("""
                                 Voltando a superficie.....

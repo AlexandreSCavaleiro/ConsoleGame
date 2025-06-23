@@ -12,12 +12,17 @@ namespace ProjetoUC
         static char[,] mapa;
 
         //AxL do mapa 
-        static int largura = 40;
-        static int altura = 15;
+        int largura = 40;
+        int altura = 15;
+
+        //Ponto atual do player
+        int playerX = 2;
+        int playerY = 2;
 
         //Ponto inicial do player
-        static int playerXini = 3;
-        static int playerYini = 3;
+        int playerXini = 2;
+        int playerYini = 2;
+
 
         //var do loop do mapa (feio, eu sei)
         static bool jogando = true;
@@ -26,7 +31,7 @@ namespace ProjetoUC
         { 
             iniciarMapa(); //popule
             Console.Clear();
-            Console.WriteLine("""
+            Console.WriteLine($"""
                 ============================================================
                     Sobre a mineração:
                         @ - Você
@@ -51,17 +56,21 @@ namespace ProjetoUC
 
                 atualizarPosicao(tecla); //usa a tecla para modificar a matriz
 
+                
             }
 
+            //reset de posição
+
+            //Console.ReadKey(true);
         }
 
 
         // var tecla = Console.ReadKey(true).Key;
-        public static void atualizarPosicao(ConsoleKey tecla)
+        public void atualizarPosicao(ConsoleKey tecla)
         {
             //
-            int tempX = playerXini;
-            int tempY = playerYini;
+            int tempX = playerX;
+            int tempY = playerY;
 
             switch (tecla)
             {
@@ -84,14 +93,14 @@ namespace ProjetoUC
             }
             if (mapa[tempX, tempY] != '#')
             {
-                mapa[playerXini, playerYini] = ' ';
+                mapa[playerX, playerY] = ' ';
                 mapa[tempX, tempY] = '@';
-                playerXini = tempX;
-                playerYini = tempY;
+                playerX = tempX;
+                playerY = tempY;
             }
         }
 
-        public static void desenharMapa()
+        public void desenharMapa()
         {
             for (int y = 0; y < altura; y++)
             {
@@ -103,8 +112,9 @@ namespace ProjetoUC
             }
         }
 
-        public static void iniciarMapa()
+        public void iniciarMapa()
         {
+            Random rand = new Random();
             mapa = new char[largura, altura];
 
             for (int x = 0; x < largura; x++)
@@ -122,8 +132,20 @@ namespace ProjetoUC
                 }
             }
 
-            mapa[playerXini, playerYini] = '@';
-            mapa[1, 1] = 'H';
+            //preencher com os objetos do mapa
+
+            mapa[playerXini,playerYini] = '@'; //player
+            mapa[1, 1] = 'H'; //saida
+
+            //TODO
+            //Nodes de mineração
+            int quantidade = 5;
+            
+            for (int x = 0;x < quantidade; x++)
+            {
+                mapa[rand.Next(1, largura - 1), rand.Next(1, altura - 1)] = '*';
+            }
+
         }
     }
 }
