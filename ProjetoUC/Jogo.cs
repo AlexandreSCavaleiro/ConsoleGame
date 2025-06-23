@@ -11,7 +11,7 @@ namespace ProjetoUC
     {
         public List<Drop> mineriosList = new List<Drop>();
         public List<Drop> joiasList = new List<Drop>();
-        public List<Drop> inventario = new List<Drop>();
+        
 
         Random rand = new Random();
         int raridadeJoia = 85;
@@ -59,7 +59,7 @@ namespace ProjetoUC
                         Um Minerio: {drop.nome} Você ganhou: +{drop.valor}
 
                     """);
-                inventario.Add(drop); //adiciona no inventário
+                Inv.add(drop); //adiciona no inventário
             }
             else // se a chance for menor q a da raridade da joia, faz a mesma coisa mas com o vetor de minérios.
             {
@@ -70,43 +70,12 @@ namespace ProjetoUC
                         Uma Jóia Rara: {drop.nome} Você ganhou: +{drop.valor}
 
                     """);
-                inventario.Add(drop);
+                Inv.add(drop);
             }
 
             //drop.show();
 
             return drop; //retorna o drop
-        }
-
-        public double totalPontos() //retorna a soma total de pontos dos itens no inventario
-        {
-            double total = 0;
-
-            if (inventario.Count > 0)
-                foreach (var item in inventario)
-                {
-                    total += item.valor;
-                }
-            return total;
-
-        }
-
-        public void showInv() //usa o metodo .show() de drop para exibir todos os drops no inventário
-        {
-            if (inventario.Count > 0)
-            {
-                foreach (var item in inventario)
-                {
-                    item.show();
-                }
-            }
-            else {
-                Console.WriteLine("""
-                    
-                    Seu inventário ainda está vazio!
-
-                """);
-            }
         }
 
     }

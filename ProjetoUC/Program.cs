@@ -34,6 +34,7 @@ namespace ProjetoUC
         {
             Jogo jogo = new Jogo();
             Map map = new Map();   
+        
             int op = -1;
 
             exibirMenu();
@@ -49,10 +50,8 @@ namespace ProjetoUC
                 {
 
                     case 1: //1. Iniciar mineração.
-                            //TODO start mapping.
 
                         clean();
-                        Console.WriteLine("mapa");
                         map.gerarMapa();
                         
                         clean();
@@ -60,25 +59,27 @@ namespace ProjetoUC
                                 Voltando a superficie.....
                                 Seu inventário depois da mineração: 
                             """);
-                        jogo.showInv();
+                        Inv.showInv();
 
-                        
                         break;
                     case 2:
                         clean();
                         Console.WriteLine($"""
 
-                            Voce tem {jogo.totalPontos()} pontos.
+                            Voce tem {Inv.totalPontos()} pontos.
 
                         """);
 
-                        
                         break;
                     case 3:
                         clean();
-                        jogo.showInv();
-
+                        Inv.showInv();
                         
+                        break;
+                    case 4:
+                        clean();
+                        jogo.pickDrop();
+
                         break;
                     case 0:
                         Console.WriteLine("""
@@ -87,6 +88,7 @@ namespace ProjetoUC
 
                             """);
                         break;
+
                     default:
                         Console.WriteLine("""
 
