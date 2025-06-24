@@ -27,7 +27,7 @@ namespace ProjetoUC
         //var do loop do mapa (feio, eu sei)
         static bool jogando = true;
 
-        public void gerarMapa() //a função principal de mapa
+        public void gerarMapa(Jogo jogo) //a função principal de mapa
         { 
             iniciarMapa(); //popule
             Console.Clear();
@@ -54,7 +54,7 @@ namespace ProjetoUC
 
                 var tecla = Console.ReadKey(true).Key; //le a tecla do usuário
 
-                atualizarPosicao(tecla); //usa a tecla para modificar a matriz
+                atualizarPosicao(tecla, jogo); //usa a tecla para modificar a matriz
 
                 
             }
@@ -66,7 +66,7 @@ namespace ProjetoUC
 
 
         // var tecla = Console.ReadKey(true).Key;
-        public void atualizarPosicao(ConsoleKey tecla)
+        public void atualizarPosicao(ConsoleKey tecla, Jogo jogo)
         {
             //
             int tempX = playerX;
@@ -93,6 +93,15 @@ namespace ProjetoUC
             }
             if (mapa[tempX, tempY] != '#')
             {
+                if(mapa[tempX, tempY] == '*')
+                {
+                    //TODO pickdrop
+                    Console.WriteLine("============================================================");
+                    jogo.pickDrop();
+                    Console.WriteLine("Aperte uma tecla para proceguir!  ");
+                    Console.ReadKey(true);
+
+                }
                 mapa[playerX, playerY] = ' ';
                 mapa[tempX, tempY] = '@';
                 playerX = tempX;

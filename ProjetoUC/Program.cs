@@ -52,7 +52,7 @@ namespace ProjetoUC
                     case 1: //1. Iniciar mineração.
 
                         clean();
-                        map.gerarMapa();
+                        map.gerarMapa(jogo);
                         map.iniciarMapa();
                         clean();
                         Console.WriteLine("""
