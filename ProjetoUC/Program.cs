@@ -44,6 +44,7 @@ namespace ProjetoUC
 
                 Console.Write("- Selecione uma opção: ");
 
+                //TODO sair de oceano azul e lidar com as entradas tortas
                 op = Convert.ToInt32(Console.ReadLine());
 
                 switch (op)
@@ -53,7 +54,7 @@ namespace ProjetoUC
 
                         clean();
                         map.gerarMapa(jogo);
-                        map.iniciarMapa();
+                        //map.iniciarMapa();
                         clean();
                         Console.WriteLine("""
                                 Voltando a superficie.....
@@ -98,6 +99,8 @@ namespace ProjetoUC
                         break;
 
                 }//switch
+
+
                 Console.WriteLine("============================================================");
                 
             } //while

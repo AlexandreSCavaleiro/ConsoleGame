@@ -19,16 +19,13 @@ namespace ProjetoUC
         int playerX = 2;
         int playerY = 2;
 
-        //Ponto inicial do player
-        int playerXini = 2;
-        int playerYini = 2;
-
 
         //var do loop do mapa (feio, eu sei)
         static bool jogando = true;
 
         public void gerarMapa(Jogo jogo) //a função principal de mapa
         { 
+            jogando = true ;
             iniciarMapa(); //popule
             Console.Clear();
             Console.WriteLine($"""
@@ -45,6 +42,7 @@ namespace ProjetoUC
 
                 ============================================================
                 """);
+
             Console.ReadKey(true);
 
             while (jogando)
@@ -90,15 +88,17 @@ namespace ProjetoUC
             if (mapa[tempX, tempY] == 'H')
             {
                 jogando = false;
+                
             }
             if (mapa[tempX, tempY] != '#')
             {
                 if(mapa[tempX, tempY] == '*')
                 {
                     //TODO pickdrop
-                    Console.WriteLine("============================================================");
                     jogo.pickDrop();
                     Console.WriteLine("Aperte uma tecla para proceguir!  ");
+                    Console.WriteLine("============================================================");
+
                     Console.ReadKey(true);
 
                 }
@@ -107,6 +107,7 @@ namespace ProjetoUC
                 playerX = tempX;
                 playerY = tempY;
             }
+
         }
 
         public void desenharMapa()
@@ -123,6 +124,8 @@ namespace ProjetoUC
 
         public void iniciarMapa()
         {
+            playerX = 2;
+            playerY = 2;  
             Random rand = new Random();
             mapa = new char[largura, altura];
 
@@ -143,7 +146,7 @@ namespace ProjetoUC
 
             //preencher com os objetos do mapa
 
-            mapa[playerXini,playerYini] = '@'; //player
+            mapa[playerX,playerY] = '@'; //player
             mapa[1, 1] = 'H'; //saida
 
             //TODO
