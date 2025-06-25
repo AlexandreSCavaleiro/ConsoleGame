@@ -38,6 +38,7 @@ namespace ProjetoUC
             int op = -1;
 
             exibirMenu();
+            
 
             while (op!=0)
             {

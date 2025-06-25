@@ -12,8 +12,22 @@ namespace ProjetoUC
 
         public static void add(Drop drop)
         {
-            SlotInventario item = new SlotInventario(drop,1);
-            inventario.Add(item);
+            bool tem = false;
+            foreach (var slot in inventario)
+            {
+                if (slot.Drop.nome == drop.nome) 
+                {
+                    slot.Quantidade++;
+                    tem = true;
+                    break;
+                }
+                
+            }
+            if (!tem || inventario.Count < 1)
+            { 
+                SlotInventario item = new SlotInventario(drop,1);
+                inventario.Add(item);
+            }
         }
 
         public static double totalPontos() //retorna a soma total de pontos dos itens no inventario
