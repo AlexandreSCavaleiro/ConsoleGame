@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoUC
 {
-    internal class Persistence
+    class Persistence
     {
         /**
          *      Serializar a lista
@@ -18,21 +18,34 @@ namespace ProjetoUC
          * 
          **/
 
+        // Caminho específico para caminho documentos
+        public static readonly string caminhoDocumentos = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+            "ConsoleGame", "SaveFile.json");
+
+        string path = "save/savefile.txt";
+
+        public Persistence() 
+        {
+            Directory.CreateDirectory("save/");
+            File.WriteAllText(path, "[]");
+            Console.WriteLine("arquivo criado");
+        }
+
         public void Teste() //op 5 no menu POR TESTE
         {
-            var jString = JsonSerializer.Serialize(Inv.inventario);
-            Console.WriteLine(jString);
-
+            var InvJson = JsonSerializer.Serialize(Inv.inventario);
+            Console.WriteLine(InvJson);
             Console.WriteLine();
 
+            File.WriteAllText(path, InvJson);
+            /*
             var djString = JsonSerializer.Deserialize<List<SlotInventario>>(jString);
             Console.WriteLine(djString);
-
             Console.WriteLine();
-
             Console.WriteLine(JsonSerializer.Serialize(djString));
-
             Console.WriteLine();
+            */
         }
 
     }
