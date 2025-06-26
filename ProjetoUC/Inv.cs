@@ -8,11 +8,26 @@ namespace ProjetoUC
 {
     static class Inv
     {
-        public static List<Drop> inventario = new List<Drop>();
+        public static List<SlotInventario> inventario = new List<SlotInventario>();
 
         public static void add(Drop drop)
         {
-            inventario.Add(drop);
+            bool tem = false;
+            foreach (var slot in inventario)
+            {
+                if (slot.Drop.nome == drop.nome) 
+                {
+                    slot.Quantidade++;
+                    tem = true;
+                    break;
+                }
+                
+            }
+            if (!tem || inventario.Count < 1)
+            { 
+                SlotInventario item = new SlotInventario(drop,1);
+                inventario.Add(item);
+            }
         }
 
         public static double totalPontos() //retorna a soma total de pontos dos itens no inventario
@@ -22,7 +37,7 @@ namespace ProjetoUC
             if (inventario.Count > 0)
                 foreach (var item in inventario)
                 {
-                    total += item.valor;
+                    total += item.Drop.valor;
                 }
             return total;
 
@@ -34,7 +49,9 @@ namespace ProjetoUC
             {
                 foreach (var item in inventario)
                 {
-                    item.show();
+                    Console.WriteLine($"""
+                            {item.Quantidade} x {item.Drop.nome} | +{item.Quantidade*item.Drop.valor}
+                        """);
                 }
             }
 
