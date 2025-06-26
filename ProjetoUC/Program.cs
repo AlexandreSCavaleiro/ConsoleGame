@@ -34,6 +34,7 @@ namespace ProjetoUC
         {
             Jogo jogo = new Jogo();
             Map map = new Map();   
+            Persistence persisManager = new Persistence();
         
             int op = -1;
 
@@ -81,6 +82,11 @@ namespace ProjetoUC
                     case 4:
                         clean();
                         jogo.pickDrop();
+
+                        break;
+                    case 5:
+                        clean();
+                        persisManager.Teste();
 
                         break;
                     case 0:
