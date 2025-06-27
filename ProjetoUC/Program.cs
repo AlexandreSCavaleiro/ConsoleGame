@@ -54,7 +54,7 @@ namespace ProjetoUC
 
                 switch (op)
                 {
-
+                    //1. inicia mineração
                     case 1: // Iniciar mineração.
 
                         clean();
@@ -68,6 +68,8 @@ namespace ProjetoUC
                         Inv.showInv();
 
                         break;
+                    
+                    //2. total de pontos
                     case 2: //total de pontos no inventario
                         clean();
                         Console.WriteLine($"""
@@ -77,6 +79,8 @@ namespace ProjetoUC
                         """);
 
                         break;
+                    
+                    //3. mostrar inventário
                     case 3: //mostrar inventário
                         clean();
                         Console.WriteLine("""
@@ -86,6 +90,8 @@ namespace ProjetoUC
                         Inv.showInv();
                         
                         break;
+                    
+                    //4. pickdrop antes da mineração pTESTE somente
                     case 4: //pickdrop pra n ter que ficar minerando enquanto to testando
                         clean();
                         Console.WriteLine("    Você foi minerar e encontrou");
@@ -93,12 +99,13 @@ namespace ProjetoUC
 
                         break;
 
-
+                    //8. salva inventario
                     case 8: // salvar inventario no arquivo json
                         clean();
-                        persisManager.salvaInventarioAtual();
+                        persisManager.NovoInventário();
 
                         break;
+                    //9. carregar inventario
                     case 9:
                         clean();
                         persisManager.carregaInventario();

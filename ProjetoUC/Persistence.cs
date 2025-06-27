@@ -23,18 +23,44 @@ namespace ProjetoUC
 
         }
 
-        public void salvaInventarioAtual() //salva no arquivo json
+        public void NovoInventário() //SUBSTITUI o arquivo json pelo inventário atual
         {
-            var InvJson = JsonSerializer.Serialize(Inv.inventario); //serializa o inventario como um json
-            
-            File.WriteAllText(path, InvJson); //escreve no arquivo
-
-            //confirma o save
             Console.WriteLine("""
-                    
-                    Inventário salvo!
+                    ESSA FUNÇÃO DELETA O ARQUIVO ANTERIOR !
+                    TEM CERTEZA QUE QUER SUBSTITUIR O ARQUIVO?
+
+                            S. SIM      N.NAO
 
                 """);
+
+            var tecla = Console.ReadKey(true).Key;
+
+            switch (tecla){
+                case ConsoleKey.S:
+                    var InvJson = JsonSerializer.Serialize(Inv.inventario); //serializa o inventario como um json
+
+                    File.WriteAllText(path, InvJson); //escreve no arquivo
+
+                    //confirma o save
+                    Console.WriteLine("""
+                        
+                        Inventário SUBSTÍTUIDO!
+
+                        """);
+                    break;
+
+                case ConsoleKey.N:
+
+                    Console.WriteLine("""
+                            
+                            Operação Cancelada!
+
+                        """);
+                    break;
+
+            }
+
+            
 
             //Console.WriteLine(InvJson);
         }
