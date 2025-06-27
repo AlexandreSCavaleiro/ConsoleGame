@@ -17,6 +17,9 @@ namespace ProjetoUC
                     2. Meus pontos.
                     3. Ver meu inventário.
 
+                    8. Salvar.
+                    9. Carregar.
+
                     0. Sair.
 
                  ============================================================
@@ -76,23 +79,29 @@ namespace ProjetoUC
                         break;
                     case 3: //mostrar inventário
                         clean();
+                        Console.WriteLine("""
+                                Seu inventário no momento: 
+
+                            """);
                         Inv.showInv();
                         
                         break;
                     case 4: //pickdrop pra n ter que ficar minerando enquanto to testando
                         clean();
+                        Console.WriteLine("    Você foi minerar e encontrou");
                         jogo.pickDrop();
 
                         break;
-                    case 5: // salvar inventario no arquivo json
+
+
+                    case 8: // salvar inventario no arquivo json
                         clean();
                         persisManager.salvaInventarioAtual();
 
                         break;
-                    case 6:
+                    case 9:
                         clean();
                         persisManager.carregaInventario();
-
                         break;
 
 

@@ -95,6 +95,7 @@ namespace ProjetoUC
                 if(mapa[tempX, tempY] == '*')
                 {
                     //TODO pickdrop
+                    Console.WriteLine("    Ao quebrar a pedra encontra: ");
                     jogo.pickDrop();
                     Console.WriteLine("Aperte uma tecla para proceguir!  ");
                     Console.WriteLine("============================================================");

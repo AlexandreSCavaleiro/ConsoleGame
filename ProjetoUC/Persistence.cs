@@ -43,11 +43,16 @@ namespace ProjetoUC
         public void salvaInventarioAtual() //op 5 no menu POR TESTE
         {
             var InvJson = JsonSerializer.Serialize(Inv.inventario);
-            Console.WriteLine(InvJson);
-            Console.WriteLine();
-
+            
             File.WriteAllText(path, InvJson);
-           
+
+            Console.WriteLine("""
+                    
+                    Inventário salvo!
+
+                """);
+
+            //Console.WriteLine(InvJson);
         }
 
 
@@ -58,15 +63,13 @@ namespace ProjetoUC
 
             Inv.setInvTo(InvJson);
 
-            Console.WriteLine(InvJson);
+            //Console.WriteLine(InvJson);
+            Console.WriteLine("""
+                    
+                    Inventário carregado!
 
-            /*
-       var djString = JsonSerializer.Deserialize<List<SlotInventario>>(jString);
-       Console.WriteLine(djString);
-       Console.WriteLine();
-       Console.WriteLine(JsonSerializer.Serialize(djString));
-       Console.WriteLine();
-       */
+                """);
+   
         }
 
     }

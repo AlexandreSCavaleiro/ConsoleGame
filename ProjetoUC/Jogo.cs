@@ -55,7 +55,6 @@ namespace ProjetoUC
 
                 //exibe
                 Console.WriteLine($"""
-                        Você foi minerar e encontrou
                         Um Minerio: {drop.nome} Você ganhou: +{drop.valor}
 
                     """);
@@ -66,7 +65,6 @@ namespace ProjetoUC
                 iddrop = rand.Next(0, joiasList.Count);
                 drop = joiasList[iddrop];
                 Console.WriteLine($"""
-                        Você foi minerar e encontrou
                         Uma Jóia Rara: {drop.nome} Você ganhou: +{drop.valor}
 
                     """);
