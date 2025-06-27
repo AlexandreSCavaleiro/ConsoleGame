@@ -8,7 +8,7 @@ namespace ProjetoUC
 {
     static class Inv
     {
-        public static List<SlotInventario> inventario = new List<SlotInventario>();
+        public static List<SlotInventario> inventario = new List<SlotInventario>() ;
 
         public static void add(Drop drop)
         {
@@ -62,6 +62,15 @@ namespace ProjetoUC
                     Seu inventário ainda está vazio!
 
                 """);
+            }
+        }
+
+        public static void setInvTo(List<SlotInventario> lista)
+        {
+            inventario.Clear();
+            foreach (var item in lista)
+            {
+                inventario.Add(item);
             }
         }
     }

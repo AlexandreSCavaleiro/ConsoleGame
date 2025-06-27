@@ -16,20 +16,25 @@ namespace ProjetoUC
          *      Deserializar a lista
          *   var djString = JsonSerializer.Deserialize<List<SlotInventario>>(jString);
          * 
-         **/
+         *
 
         // Caminho específico para caminho documentos
         public static readonly string caminhoDocumentos = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
             "ConsoleGame", "SaveFile.json");
 
+
+        */
+
         string path = "save/savefile.txt";
 
         public Persistence() 
         {
-
-            Directory.CreateDirectory("save/");
-            File.WriteAllText(path, "[]");
+            if (!File.Exists(path))
+            {
+                Directory.CreateDirectory("save/");
+                File.WriteAllText(path, "[]");
+            }
             //Console.WriteLine("arquivo criado");
 
 
@@ -42,13 +47,26 @@ namespace ProjetoUC
             Console.WriteLine();
 
             File.WriteAllText(path, InvJson);
+           
+        }
+
+
+        public void carregaInventario() 
+        {
+            var jString = File.ReadAllText(path);
+            var InvJson = JsonSerializer.Deserialize<List<SlotInventario>>(jString);
+
+            Inv.setInvTo(InvJson);
+
+            Console.WriteLine(InvJson);
+
             /*
-            var djString = JsonSerializer.Deserialize<List<SlotInventario>>(jString);
-            Console.WriteLine(djString);
-            Console.WriteLine();
-            Console.WriteLine(JsonSerializer.Serialize(djString));
-            Console.WriteLine();
-            */
+       var djString = JsonSerializer.Deserialize<List<SlotInventario>>(jString);
+       Console.WriteLine(djString);
+       Console.WriteLine();
+       Console.WriteLine(JsonSerializer.Serialize(djString));
+       Console.WriteLine();
+       */
         }
 
     }

@@ -89,6 +89,11 @@ namespace ProjetoUC
                         persisManager.salvaInventarioAtual();
 
                         break;
+                    case 6:
+                        clean();
+                        persisManager.carregaInventario();
+
+                        break;
 
 
                     case 0: //out
