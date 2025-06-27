@@ -9,28 +9,11 @@ namespace ProjetoUC
 {
     class Persistence
     {
-        /**
-         *      Serializar a lista
-         *   var jString = JsonSerializer.Serialize(Inv.inventario);
-         * 
-         *      Deserializar a lista
-         *   var djString = JsonSerializer.Deserialize<List<SlotInventario>>(jString);
-         * 
-         *
+        string path = "save/savefile.txt"; //caminho padrao relativo ao .exe do jogo
 
-        // Caminho específico para caminho documentos
-        public static readonly string caminhoDocumentos = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-            "ConsoleGame", "SaveFile.json");
-
-
-        */
-
-        string path = "save/savefile.txt";
-
-        public Persistence() 
+        public Persistence() //ao criar o obj
         {
-            if (!File.Exists(path))
+            if (!File.Exists(path)) //checa a existencia do arquivo e cria vazio se nao existir
             {
                 Directory.CreateDirectory("save/");
                 File.WriteAllText(path, "[]");
@@ -40,12 +23,13 @@ namespace ProjetoUC
 
         }
 
-        public void salvaInventarioAtual() //op 5 no menu POR TESTE
+        public void salvaInventarioAtual() //salva no arquivo json
         {
-            var InvJson = JsonSerializer.Serialize(Inv.inventario);
+            var InvJson = JsonSerializer.Serialize(Inv.inventario); //serializa o inventario como um json
             
-            File.WriteAllText(path, InvJson);
+            File.WriteAllText(path, InvJson); //escreve no arquivo
 
+            //confirma o save
             Console.WriteLine("""
                     
                     Inventário salvo!
@@ -55,21 +39,21 @@ namespace ProjetoUC
             //Console.WriteLine(InvJson);
         }
 
-
-        public void carregaInventario() 
+        public void carregaInventario() //carrega do arquivo json
         {
-            var jString = File.ReadAllText(path);
-            var InvJson = JsonSerializer.Deserialize<List<SlotInventario>>(jString);
+            var jString = File.ReadAllText(path); //le o testo e carrega na var jString
+            var InvJson = JsonSerializer.Deserialize<List<SlotInventario>>(jString); // DEserializa o json em uma variavel 
 
-            Inv.setInvTo(InvJson);
+            Inv.setInvTo(InvJson); //copia a lista para o inventario SUBSTITUI o que estava lá
 
-            //Console.WriteLine(InvJson);
+            //confirma o carregamento
             Console.WriteLine("""
                     
                     Inventário carregado!
 
                 """);
-   
+
+            //Console.WriteLine(InvJson);
         }
 
     }
