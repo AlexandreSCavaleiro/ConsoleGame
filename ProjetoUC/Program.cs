@@ -52,7 +52,7 @@ namespace ProjetoUC
                 switch (op)
                 {
 
-                    case 1: //1. Iniciar mineração.
+                    case 1: // Iniciar mineração.
 
                         clean();
                         map.gerarMapa(jogo);
@@ -65,7 +65,7 @@ namespace ProjetoUC
                         Inv.showInv();
 
                         break;
-                    case 2:
+                    case 2: //total de pontos no inventario
                         clean();
                         Console.WriteLine($"""
 
@@ -74,22 +74,24 @@ namespace ProjetoUC
                         """);
 
                         break;
-                    case 3:
+                    case 3: //mostrar inventário
                         clean();
                         Inv.showInv();
                         
                         break;
-                    case 4:
+                    case 4: //pickdrop pra n ter que ficar minerando enquanto to testando
                         clean();
                         jogo.pickDrop();
 
                         break;
-                    case 5:
+                    case 5: // salvar inventario no arquivo json
                         clean();
-                        persisManager.Teste();
+                        persisManager.salvaInventarioAtual();
 
                         break;
-                    case 0:
+
+
+                    case 0: //out
                         Console.WriteLine("""
 
                                 Ok, até a proxima! Volte logo!

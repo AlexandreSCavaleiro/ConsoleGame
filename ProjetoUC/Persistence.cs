@@ -27,12 +27,15 @@ namespace ProjetoUC
 
         public Persistence() 
         {
+
             Directory.CreateDirectory("save/");
             File.WriteAllText(path, "[]");
-            Console.WriteLine("arquivo criado");
+            //Console.WriteLine("arquivo criado");
+
+
         }
 
-        public void Teste() //op 5 no menu POR TESTE
+        public void salvaInventarioAtual() //op 5 no menu POR TESTE
         {
             var InvJson = JsonSerializer.Serialize(Inv.inventario);
             Console.WriteLine(InvJson);
