@@ -17,6 +17,9 @@ namespace ProjetoUC
                     2. Meus pontos.
                     3. Ver meu inventário.
 
+                    8. Salvar.
+                    9. Carregar.
+
                     0. Sair.
 
                  ============================================================
@@ -34,6 +37,7 @@ namespace ProjetoUC
         {
             Jogo jogo = new Jogo();
             Map map = new Map();   
+            Persistence persisManager = new Persistence();
         
             int op = -1;
 
@@ -50,8 +54,8 @@ namespace ProjetoUC
 
                 switch (op)
                 {
-
-                    case 1: //1. Iniciar mineração.
+                    //1. inicia mineração
+                    case 1: // Iniciar mineração.
 
                         clean();
                         map.gerarMapa(jogo);
@@ -64,7 +68,9 @@ namespace ProjetoUC
                         Inv.showInv();
 
                         break;
-                    case 2:
+                    
+                    //2. total de pontos
+                    case 2: //total de pontos no inventario
                         clean();
                         Console.WriteLine($"""
 
@@ -73,17 +79,40 @@ namespace ProjetoUC
                         """);
 
                         break;
-                    case 3:
+                    
+                    //3. mostrar inventário
+                    case 3: //mostrar inventário
                         clean();
+                        Console.WriteLine("""
+                                Seu inventário no momento: 
+
+                            """);
                         Inv.showInv();
                         
                         break;
-                    case 4:
+                    
+                    //4. pickdrop antes da mineração pTESTE somente
+                    case 4: //pickdrop pra n ter que ficar minerando enquanto to testando
                         clean();
+                        Console.WriteLine("    Você foi minerar e encontrou");
                         jogo.pickDrop();
 
                         break;
-                    case 0:
+
+                    //8. salva inventario
+                    case 8: // salvar inventario no arquivo json
+                        clean();
+                        persisManager.NovoInventário();
+
+                        break;
+                    //9. carregar inventario
+                    case 9:
+                        clean();
+                        persisManager.carregaInventario();
+                        break;
+
+
+                    case 0: //out
                         Console.WriteLine("""
 
                                 Ok, até a proxima! Volte logo!

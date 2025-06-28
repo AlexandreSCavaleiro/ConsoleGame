@@ -8,7 +8,7 @@ namespace ProjetoUC
 {
     static class Inv
     {
-        public static List<SlotInventario> inventario = new List<SlotInventario>();
+        public static List<SlotInventario> inventario = new List<SlotInventario>() ;
 
         public static void add(Drop drop)
         {
@@ -28,6 +28,27 @@ namespace ProjetoUC
                 SlotInventario item = new SlotInventario(drop,1);
                 inventario.Add(item);
             }
+            
+        }
+
+        public static void addAsSLot(SlotInventario drop)
+        {
+            bool tem = false;
+            foreach (var slot in inventario)
+            {
+                if (slot.Drop.nome == drop.Drop.nome)
+                {
+                    slot.Quantidade += drop.Quantidade;
+                    tem = true;
+                    break;
+                }
+
+            }
+            if (!tem || inventario.Count < 1)
+            {
+                SlotInventario item = drop;
+                inventario.Add(item);
+            }
         }
 
         public static double totalPontos() //retorna a soma total de pontos dos itens no inventario
@@ -42,15 +63,20 @@ namespace ProjetoUC
             return total;
 
         }
-
-        public static void showInv() //usa o metodo .show() de drop para exibir todos os drops no inventário
+        public static void organizeInv()
         {
+            inventario.Sort((a, b) => b.Drop.valor.CompareTo(a.Drop.valor));
+        }
+
+        public static void showInv() //exibir todos os drops no inventário
+        {
+            organizeInv();
             if (inventario.Count > 0)
             {
                 foreach (var item in inventario)
                 {
                     Console.WriteLine($"""
-                            {item.Quantidade} x {item.Drop.nome} | +{item.Quantidade*item.Drop.valor}
+                                {item.Quantidade} x {item.Drop.nome} | +{item.Quantidade*item.Drop.valor}
                         """);
                 }
             }
@@ -64,5 +90,17 @@ namespace ProjetoUC
                 """);
             }
         }
+
+        public static void setInvTo(List<SlotInventario> lista)
+        {
+            inventario.Clear();
+            foreach (var item in lista)
+            {
+                inventario.Add(item);
+            }
+        }
+        
+        
+   
     }
 }
