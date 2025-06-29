@@ -20,7 +20,7 @@ namespace ProjetoUC
         int playerY = 2;
 
 
-        //var do loop do mapa (feio, eu sei)
+        // var do loop do mapa (feio, eu sei)
         static bool jogando = true;
 
         public void gerarMapa(Jogo jogo) //a função principal de mapa
@@ -63,7 +63,7 @@ namespace ProjetoUC
         }
 
 
-        // var tecla = Console.ReadKey(true).Key;
+        // Função que cuida da mudança de posição do player no mapa
         public void atualizarPosicao(ConsoleKey tecla, Jogo jogo)
         {
             //
@@ -97,7 +97,7 @@ namespace ProjetoUC
                     //TODO pickdrop
                     Console.WriteLine("    Ao quebrar a pedra encontra: ");
                     jogo.pickDrop();
-                    Console.WriteLine("Aperte uma tecla para proceguir!  ");
+                    Console.WriteLine("Aperte uma tecla para prosseguir!  ");
                     Console.WriteLine("============================================================");
 
                     Console.ReadKey(true);
@@ -111,6 +111,7 @@ namespace ProjetoUC
 
         }
 
+        // Função que cuida da exibição do mapa 
         public void desenharMapa()
         {
             for (int y = 0; y < altura; y++)
@@ -123,6 +124,7 @@ namespace ProjetoUC
             }
         }
 
+        // Função que inicia a matriz do mapa
         public void iniciarMapa()
         {
             playerX = 2;

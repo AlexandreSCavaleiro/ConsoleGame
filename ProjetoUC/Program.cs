@@ -8,6 +8,7 @@ namespace ProjetoUC
 {
     class Program
     {
+        // Função que exibe o menu na tela
         public static void exibirMenu()
         {
             Console.WriteLine("""
@@ -26,6 +27,7 @@ namespace ProjetoUC
                  """);
         }
 
+        // Função qua mantem o menu no topo do console
         public static void clean()
         {
             Console.Clear();
