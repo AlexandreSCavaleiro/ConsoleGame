@@ -29,58 +29,75 @@ namespace ProjetoUC
                     ESSA FUNÇÃO DELETA O ARQUIVO ANTERIOR !
                     TEM CERTEZA QUE QUER SUBSTITUIR O ARQUIVO?
 
-                            S. SIM      N.NAO
+                            S. SIM      
+                        QUALQUER TECLA. NAO
 
                 """);
 
             var tecla = Console.ReadKey(true).Key;
 
-            switch (tecla){
-                case ConsoleKey.S:
-                    var InvJson = JsonSerializer.Serialize(Inv.inventario); //serializa o inventario como um json
 
-                    File.WriteAllText(path, InvJson); //escreve no arquivo
+            if (tecla == ConsoleKey.S) {
+                var InvJson = JsonSerializer.Serialize(Inv.inventario); //serializa o inventario como um json
 
-                    //confirma o save
-                    Console.WriteLine("""
+                File.WriteAllText(path, InvJson); //escreve no arquivo
+
+                //confirma o save
+                Console.WriteLine("""
                         
-                        Inventário SUBSTÍTUIDO!
+                    Inventário SUBSTÍTUIDO!
 
-                        """);
-                    break;
-
-                case ConsoleKey.N:
-
-                    Console.WriteLine("""
+                    """);
+            }
+            else
+            {
+                Console.WriteLine("""
                             
                             Operação Cancelada!
 
                         """);
-                    break;
-
             }
-
-            
 
             //Console.WriteLine(InvJson);
         }
 
         public void carregaInventario() //carrega do arquivo json
         {
-            var jString = File.ReadAllText(path); //le o testo e carrega na var jString
-            var InvJson = JsonSerializer.Deserialize<List<SlotInventario>>(jString); // DEserializa o json em uma variavel 
-
-            Inv.setInvTo(InvJson); //copia a lista para o inventario SUBSTITUI o que estava lá
-
-            //confirma o carregamento
             Console.WriteLine("""
+                    ESSA FUNÇÃO SUBSTITUI O INVENTÁRIO QUE VOCÊ ESTÁ !
+                    TEM CERTEZA QUE QUER SUBSTITUIR O INVENTÁRIO?
+
+                            S. SIM      N.NAO
+
+                """);
+
+            var tecla = Console.ReadKey(true).Key;
+
+            if (tecla == ConsoleKey.S)
+            {
+                var jString = File.ReadAllText(path); //le o testo e carrega na var jString
+                var InvJson = JsonSerializer.Deserialize<List<SlotInventario>>(jString); // DEserializa o json em uma variavel 
+
+                Inv.setInvTo(InvJson); //copia a lista para o inventario SUBSTITUI o que estava lá
+
+                //confirma o carregamento
+                Console.WriteLine("""
                     
                     Inventário carregado!
 
                 """);
+            }
+            else
+            {
+                Console.WriteLine("""
+                    
+                        Operação Cancelada!
+                     
+                    """);
+            }
 
-            //Console.WriteLine(InvJson);
+                    //Console.WriteLine(InvJson);
+
         }
-
     }
 }
