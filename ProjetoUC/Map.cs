@@ -72,17 +72,22 @@ namespace ProjetoUC
 
             switch (tecla)
             {
+
+                case ConsoleKey.LeftArrow:
                 case ConsoleKey.A:
-                    tempX--;
+                    tempX--; //Movimenta para a Esquerda
                     break;
+                case ConsoleKey.RightArrow:
                 case ConsoleKey.D:
-                    tempX++;
+                    tempX++; //Movimenta para a Direita
                     break;
+                case ConsoleKey.UpArrow:
                 case ConsoleKey.W:
-                    tempY--;
+                    tempY--; //Movimenta para Cima
                     break;
+                case ConsoleKey.DownArrow:
                 case ConsoleKey.S:
-                    tempY++;
+                    tempY++; //Movimenta para baixo
                     break;
             }
             if (mapa[tempX, tempY] == 'H')
