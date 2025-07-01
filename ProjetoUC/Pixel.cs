@@ -11,7 +11,7 @@ namespace ProjetoUC
         private ConsoleColor cor;
         char icone;
 
-        public Pixel(ConsoleColor cor, char icone)
+        public Pixel(char icone, ConsoleColor cor)
         {
 
             this.cor = cor;
