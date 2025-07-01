@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace ProjetoUC
 {
@@ -35,7 +35,7 @@ namespace ProjetoUC
             //Console.WriteLine("============================================================");
         } 
 
-        public static void Main()
+        public static async Task Main()
         {
             Jogo jogo = new Jogo();
             Map map = new Map();   

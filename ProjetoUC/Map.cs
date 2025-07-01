@@ -9,8 +9,16 @@ namespace ProjetoUC
     class Map
     {
         //mapa vazio
-        static char[,] mapa;
+        static Pixel[,] mapa;
 
+        //Icones do mapa
+        Pixel player = new Pixel('@', ConsoleColor.DarkYellow);
+        Pixel parede = new Pixel('#', ConsoleColor.DarkGray);
+        Pixel minerio = new Pixel('*', ConsoleColor.Cyan);
+        Pixel escada = new Pixel('H', ConsoleColor.White);
+        Pixel espaco = new Pixel(' ', ConsoleColor.Black);
+        
+        
         //AxL do mapa 
         int largura = 40;
         int altura = 15;
@@ -57,12 +65,7 @@ namespace ProjetoUC
 
                 
             }
-
-            //reset de posição
-
-            //Console.ReadKey(true);
         }
-
 
         // Função que cuida da mudança de posição do player no mapa
         public void atualizarPosicao(ConsoleKey tecla, Jogo jogo)
@@ -91,16 +94,19 @@ namespace ProjetoUC
                     tempY++; //Movimenta para baixo
                     break;
             }
-            if (mapa[tempX, tempY] == 'H')
+            if (mapa[tempX, tempY] == escada)
             {
                 jogando = false;
                 
             }
-            if (mapa[tempX, tempY] != '#')
+            if (mapa[tempX, tempY] != parede)
             {
-                if(mapa[tempX, tempY] == '*')
+                if(mapa[tempX, tempY] == minerio)
                 {
                     //TODO pickdrop
+                    Console.Clear();
+                    desenharMapa();
+                    Console.WriteLine("============================================================");
                     Console.WriteLine("    Ao quebrar a pedra encontra: ");
                     jogo.pickDrop();
                     Console.WriteLine("Aperte uma tecla para prosseguir!  ");
@@ -109,12 +115,11 @@ namespace ProjetoUC
                     Console.ReadKey(true);
 
                 }
-                mapa[playerX, playerY] = ' ';
-                mapa[tempX, tempY] = '@';
+                mapa[playerX, playerY] = espaco;
+                mapa[tempX, tempY] = player;
                 playerX = tempX;
                 playerY = tempY;
             }
-
         }
 
         // Função que cuida da exibição do mapa 
@@ -124,7 +129,9 @@ namespace ProjetoUC
             {
                 for (int x = 0; x < largura; x++)
                 {
-                    Console.Write(mapa[x, y]);
+                    var pixel = mapa[x, y];
+                    pixel.show();
+                    //Console.Write(mapa[x, y]);
                 }
                 Console.WriteLine();
             }
@@ -136,7 +143,7 @@ namespace ProjetoUC
             playerX = 2;
             playerY = 2;  
             Random rand = new Random();
-            mapa = new char[largura, altura];
+            mapa = new Pixel[largura, altura];
 
             for (int x = 0; x < largura; x++)
             {
@@ -144,28 +151,27 @@ namespace ProjetoUC
                 {
                     if (x == 0 || y == 0 || x == largura - 1 || y == altura - 1)
                     {
-                        mapa[x, y] = '#';
+                        mapa[x, y] = parede;
                     }
                     else
                     {
-                        mapa[x, y] = ' ';
+                        mapa[x, y] = espaco;
                     }
                 }
             }
 
             //preencher com os objetos do mapa
 
-            mapa[playerX,playerY] = '@'; //player
-            mapa[1, 1] = 'H'; //saida
-
-            //TODO
             //Nodes de mineração
-            int quantidade = 5;
+            int quantidade = rand.Next(5,10);
             
             for (int x = 0;x < quantidade; x++)
             {
-                mapa[rand.Next(1, largura - 1), rand.Next(1, altura - 1)] = '*';
+                mapa[rand.Next(1, largura - 1), rand.Next(1, altura - 1)] = minerio;
             }
+
+            mapa[playerX, playerY] = player; //player
+            mapa[1, 1] = escada; //saida
 
         }
     }
