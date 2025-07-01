@@ -33,20 +33,40 @@ namespace ProjetoUC
             Console.Clear();
             exibirMenu();
             //Console.WriteLine("============================================================");
-        } 
+        }
+
+        // Função que preenche o campo nome do Jogador
+        public static void getJogadorNome()
+        {
+            Console.WriteLine("""
+                    
+                    Olá Jogador, Bem vindo!
+                    Escreva seu nome aseguir por favor.
+
+                """);
+            Console.Write("    > ");
+
+            //TODO entrada acertiva
+            string nome = Console.ReadLine();
+            if (nome.Count() > 0)
+            {
+                Jogador.nome = nome;
+            }
+        }
 
         public static async Task Main()
         {
+
             Jogo jogo = new Jogo();
             Map map = new Map();   
             Persistence persisManager = new Persistence();
-        
-            ConsoleKey op = ConsoleKey.D0;
+
+            ConsoleKey op;
             bool jogando = true;
 
+            getJogadorNome();
             exibirMenu();
             
-
             while (jogando)
             {
 

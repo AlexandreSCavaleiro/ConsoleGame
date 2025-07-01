@@ -12,7 +12,7 @@ namespace ProjetoUC
         static Pixel[,] mapa;
 
         //Icones do mapa
-        Pixel player = new Pixel('@', ConsoleColor.DarkYellow);
+        Pixel player = Jogador.pixel;
         Pixel parede = new Pixel('#', ConsoleColor.DarkGray);
         Pixel minerio = new Pixel('*', ConsoleColor.Cyan);
         Pixel escada = new Pixel('H', ConsoleColor.White);
