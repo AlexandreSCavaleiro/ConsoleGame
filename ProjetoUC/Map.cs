@@ -44,10 +44,11 @@ namespace ProjetoUC
                 """);
 
             Console.ReadKey(true);
+            Console.Clear();
 
             while (jogando)
             {
-                Console.Clear();
+                Console.SetCursorPosition(0,0);
                 desenharMapa(); //exiba
 
                 var tecla = Console.ReadKey(true).Key; //le a tecla do usuário
