@@ -14,8 +14,8 @@ namespace ProjetoUC
         //Icones do mapa
         Pixel player = new Pixel('@', ConsoleColor.DarkYellow);
         Pixel parede = new Pixel('#', ConsoleColor.DarkGray);
-        Pixel minerio = new Pixel('*', ConsoleColor.DarkCyan);
-        Pixel escada = new Pixel('H', ConsoleColor.Magenta);
+        Pixel minerio = new Pixel('*', ConsoleColor.Cyan);
+        Pixel escada = new Pixel('H', ConsoleColor.White);
         Pixel espaco = new Pixel(' ', ConsoleColor.Black);
         
         
@@ -65,11 +65,7 @@ namespace ProjetoUC
 
                 
             }
-
-            Console.ForegroundColor = ConsoleColor.White;
-
         }
-
 
         // Função que cuida da mudança de posição do player no mapa
         public void atualizarPosicao(ConsoleKey tecla, Jogo jogo)
@@ -108,7 +104,9 @@ namespace ProjetoUC
                 if(mapa[tempX, tempY] == minerio)
                 {
                     //TODO pickdrop
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Clear();
+                    desenharMapa();
+                    Console.WriteLine("============================================================");
                     Console.WriteLine("    Ao quebrar a pedra encontra: ");
                     jogo.pickDrop();
                     Console.WriteLine("Aperte uma tecla para prosseguir!  ");
@@ -122,7 +120,6 @@ namespace ProjetoUC
                 playerX = tempX;
                 playerY = tempY;
             }
-
         }
 
         // Função que cuida da exibição do mapa 
@@ -165,17 +162,16 @@ namespace ProjetoUC
 
             //preencher com os objetos do mapa
 
-            mapa[playerX,playerY] = player; //player
-            mapa[1, 1] = escada; //saida
-
-            //TODO
             //Nodes de mineração
-            int quantidade = 5;
+            int quantidade = rand.Next(5,10);
             
             for (int x = 0;x < quantidade; x++)
             {
                 mapa[rand.Next(1, largura - 1), rand.Next(1, altura - 1)] = minerio;
             }
+
+            mapa[playerX, playerY] = player; //player
+            mapa[1, 1] = escada; //saida
 
         }
     }

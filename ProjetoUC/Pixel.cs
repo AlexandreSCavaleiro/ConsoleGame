@@ -22,6 +22,7 @@ namespace ProjetoUC
         {
             Console.ForegroundColor = this.cor; 
             Console.Write(this.icone);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
