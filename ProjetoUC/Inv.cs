@@ -58,7 +58,7 @@ namespace ProjetoUC
             if (inventario.Count > 0)
                 foreach (var item in inventario)
                 {
-                    total += item.Drop.valor;
+                    total += (item.Drop.valor * item.Quantidade);
                 }
             return total;
 

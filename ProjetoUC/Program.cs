@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace ProjetoUC
 {
     class Program
     {
+        // Função que exibe o menu na tela
         public static void exibirMenu()
         {
             Console.WriteLine("""
@@ -20,42 +21,64 @@ namespace ProjetoUC
                     8. Salvar.
                     9. Carregar.
 
-                    0. Sair.
+                    ESC. Sair.
 
                  ============================================================
                  """);
         }
 
+        // Função qua mantem o menu no topo do console
         public static void clean()
         {
             Console.Clear();
             exibirMenu();
             //Console.WriteLine("============================================================");
-        } 
+        }
 
-        public static void Main()
+        // Função que preenche o campo nome do Jogador
+        public static void getJogadorNome()
         {
+            Console.WriteLine("""
+                    
+                    Olá Jogador, Bem vindo!
+                    Escreva seu nome aseguir por favor.
+
+                """);
+            Console.Write("    > ");
+
+            //TODO entrada acertiva
+            string nome = Console.ReadLine();
+            if (nome.Count() > 0)
+            {
+                Jogador.nome = nome;
+            }
+        }
+
+        public static async Task Main()
+        {
+
             Jogo jogo = new Jogo();
             Map map = new Map();   
             Persistence persisManager = new Persistence();
-        
-            int op = -1;
 
+            ConsoleKey op;
+            bool jogando = true;
+
+            getJogadorNome();
             exibirMenu();
             
-
-            while (op!=0)
+            while (jogando)
             {
 
                 Console.Write("- Selecione uma opção: ");
 
-                //TODO sair de oceano azul e lidar com as entradas tortas
-                op = Convert.ToInt32(Console.ReadLine());
+                op = Console.ReadKey(true).Key;
 
                 switch (op)
                 {
                     //1. inicia mineração
-                    case 1: // Iniciar mineração.
+                    case ConsoleKey.NumPad1: 
+                    case ConsoleKey.D1:
 
                         clean();
                         map.gerarMapa(jogo);
@@ -68,9 +91,10 @@ namespace ProjetoUC
                         Inv.showInv();
 
                         break;
-                    
+
                     //2. total de pontos
-                    case 2: //total de pontos no inventario
+                    case ConsoleKey.NumPad2:
+                    case ConsoleKey.D2: //total de pontos no inventario
                         clean();
                         Console.WriteLine($"""
 
@@ -79,9 +103,10 @@ namespace ProjetoUC
                         """);
 
                         break;
-                    
+
                     //3. mostrar inventário
-                    case 3: //mostrar inventário
+                    case ConsoleKey.NumPad3:
+                    case ConsoleKey.D3: //mostrar inventário
                         clean();
                         Console.WriteLine("""
                                 Seu inventário no momento: 
@@ -90,34 +115,40 @@ namespace ProjetoUC
                         Inv.showInv();
                         
                         break;
-                    
+
                     //4. pickdrop antes da mineração pTESTE somente
-                    case 4: //pickdrop pra n ter que ficar minerando enquanto to testando
+                    case ConsoleKey.NumPad4:
+                    case ConsoleKey.D4: //pickdrop pra n ter que ficar minerando enquanto to testando
                         clean();
                         Console.WriteLine("    Você foi minerar e encontrou");
                         jogo.pickDrop();
-
                         break;
 
+
+
                     //8. salva inventario
-                    case 8: // salvar inventario no arquivo json
+                    case ConsoleKey.NumPad8:
+                    case ConsoleKey.D8: // salvar inventario no arquivo json
                         clean();
                         persisManager.NovoInventário();
 
                         break;
-                    //9. carregar inventario
-                    case 9:
+                    
+                        //9. carregar inventario
+                    case ConsoleKey.NumPad9:
+                    case ConsoleKey.D9:
                         clean();
                         persisManager.carregaInventario();
                         break;
 
 
-                    case 0: //out
+                    case ConsoleKey.Escape: //out
                         Console.WriteLine("""
 
                                 Ok, até a proxima! Volte logo!
 
                             """);
+                        jogando = false;
                         break;
 
                     default:
