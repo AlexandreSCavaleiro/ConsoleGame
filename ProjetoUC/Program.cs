@@ -35,36 +35,15 @@ namespace ProjetoUC
             //Console.WriteLine("============================================================");
         }
 
-        // Função que preenche o campo nome do Jogador
-        public static void getJogadorNome()
-        {
-            Console.WriteLine("""
-                    
-                    Olá Jogador, Bem vindo!
-                    Escreva seu nome aseguir por favor.
-
-                """);
-            Console.Write("    > ");
-
-            //TODO entrada acertiva
-            string nome = Console.ReadLine();
-            if (nome.Count() > 0)
-            {
-                Jogador.nome = nome;
-            }
-        }
 
         public static async Task Main()
         {
 
-            Jogo jogo = new Jogo();
-            Map map = new Map();   
+            Jogo.inicializar(); 
             Persistence persisManager = new Persistence();
 
             ConsoleKey op;
             bool jogando = true;
-
-            getJogadorNome();
             exibirMenu();
             
             while (jogando)
@@ -81,7 +60,7 @@ namespace ProjetoUC
                     case ConsoleKey.D1:
 
                         clean();
-                        map.gerarMapa(jogo);
+                        Map.gerarMapa();
                         //map.iniciarMapa();
                         clean();
                         Console.WriteLine("""
@@ -121,7 +100,7 @@ namespace ProjetoUC
                     case ConsoleKey.D4: //pickdrop pra n ter que ficar minerando enquanto to testando
                         clean();
                         Console.WriteLine("    Você foi minerar e encontrou");
-                        jogo.pickDrop();
+                        Jogo.pickDrop();
                         break;
 
 
