@@ -6,32 +6,28 @@ using System.Threading.Tasks;
 
 namespace ProjetoUC
 {
-    class Map
+    static class Map
     {
         //mapa vazio
-        static Pixel[,] mapa;
+        static public Pixel[,] mapa;
 
         //Icones do mapa
-        Pixel player = Jogador.pixel;
-        Pixel parede = new Pixel('#', ConsoleColor.DarkGray);
-        Pixel minerio = new Pixel('*', ConsoleColor.Cyan);
-        Pixel escada = new Pixel('H', ConsoleColor.White);
-        Pixel espaco = new Pixel(' ', ConsoleColor.Black);
+        static public Pixel player = Jogador.pixel;
+        static public Pixel parede = new Pixel('#', ConsoleColor.DarkGray);
+        static public Pixel minerio = new Pixel('*', ConsoleColor.Cyan);
+        static public Pixel escada = new Pixel('H', ConsoleColor.White);
+        static public Pixel espaco = new Pixel(' ', ConsoleColor.Black);
         
         
         //AxL do mapa 
-        int largura = 40;
-        int altura = 15;
-
-        //Ponto atual do player
-        int playerX = 2;
-        int playerY = 2;
+        static int largura = 40;
+        static int altura = 15;
 
 
         // var do loop do mapa (feio, eu sei)
-        static bool jogando = true;
+        static public bool jogando = true;
 
-        public void gerarMapa(Jogo jogo) //a função principal de mapa
+        static public void gerarMapa() //a função principal de mapa
         { 
             jogando = true ;
             iniciarMapa(); //popule
@@ -61,69 +57,15 @@ namespace ProjetoUC
 
                 var tecla = Console.ReadKey(true).Key; //le a tecla do usuário
 
-                atualizarPosicao(tecla, jogo); //usa a tecla para modificar a matriz
-
+                //atualizarPosicao(tecla); //usa a tecla para modificar a matriz
+                Jogador.movimentar(tecla);
                 
             }
         }
 
-        // Função que cuida da mudança de posição do player no mapa
-        public void atualizarPosicao(ConsoleKey tecla, Jogo jogo)
-        {
-            //
-            int tempX = playerX;
-            int tempY = playerY;
-
-            switch (tecla)
-            {
-
-                case ConsoleKey.LeftArrow:
-                case ConsoleKey.A:
-                    tempX--; //Movimenta para a Esquerda
-                    break;
-                case ConsoleKey.RightArrow:
-                case ConsoleKey.D:
-                    tempX++; //Movimenta para a Direita
-                    break;
-                case ConsoleKey.UpArrow:
-                case ConsoleKey.W:
-                    tempY--; //Movimenta para Cima
-                    break;
-                case ConsoleKey.DownArrow:
-                case ConsoleKey.S:
-                    tempY++; //Movimenta para baixo
-                    break;
-            }
-            if (mapa[tempX, tempY] == escada)
-            {
-                jogando = false;
-                
-            }
-            if (mapa[tempX, tempY] != parede)
-            {
-                if(mapa[tempX, tempY] == minerio)
-                {
-                    //TODO pickdrop
-                    Console.Clear();
-                    desenharMapa();
-                    Console.WriteLine("============================================================");
-                    Console.WriteLine("    Ao quebrar a pedra encontra: ");
-                    jogo.pickDrop();
-                    Console.WriteLine("Aperte uma tecla para prosseguir!  ");
-                    Console.WriteLine("============================================================");
-
-                    Console.ReadKey(true);
-
-                }
-                mapa[playerX, playerY] = espaco;
-                mapa[tempX, tempY] = player;
-                playerX = tempX;
-                playerY = tempY;
-            }
-        }
 
         // Função que cuida da exibição do mapa 
-        public void desenharMapa()
+        static public void desenharMapa()
         {
             for (int y = 0; y < altura; y++)
             {
@@ -138,10 +80,11 @@ namespace ProjetoUC
         }
 
         // Função que inicia a matriz do mapa
-        public void iniciarMapa()
+        static public void iniciarMapa()
         {
-            playerX = 2;
-            playerY = 2;  
+            Jogador.posX = 2;
+            Jogador.posY = 2;
+            
             Random rand = new Random();
             mapa = new Pixel[largura, altura];
 
@@ -170,7 +113,7 @@ namespace ProjetoUC
                 mapa[rand.Next(1, largura - 1), rand.Next(1, altura - 1)] = minerio;
             }
 
-            mapa[playerX, playerY] = player; //player
+            mapa[Jogador.posX, Jogador.posY] = player; //player
             mapa[1, 1] = escada; //saida
 
         }

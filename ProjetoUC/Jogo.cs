@@ -7,27 +7,37 @@ using System.Threading.Tasks;
 
 namespace ProjetoUC
 {
-    class Jogo
+    static class Jogo
     {
-        public List<Drop> mineriosList = new List<Drop>();
-        public List<Drop> joiasList = new List<Drop>();
-        
+        static public List<Drop> mineriosList = new List<Drop>();
+        static public List<Drop> joiasList = new List<Drop>();
 
-        Random rand = new Random();
-        int raridadeJoia = 85;
 
-        public Jogo()
+        static Random rand = new Random();
+        static int raridadeJoia = 85;
+
+        static public void inicializar() 
         {
-            inicializar();
-        }
+            //Função que preenche o campo nome do Jogador
+            Console.WriteLine("""
+                    
+                    Olá Jogador, Bem vindo!
+                    Escreva seu nome aseguir por favor.
 
-        public void inicializar() 
-        {
-            /*
-            * atualmente, cria hardcodded as listas de itens
-            * futuramente, a ideia é carregar de um Json
-            */
+                """);
+            Console.Write("    > ");
 
+            //TODO
+            //entrada acertiva
+            string nome = Console.ReadLine();
+            if (nome.Count() > 0)
+            {
+                Jogador.nome = nome;
+            }
+
+            //TODO
+            //atualmente, cria hardcodded as listas de itens
+            //futuramente, a ideia é carregar de um Json
             mineriosList.Add(new Drop("Carvão", 1, 1));
             mineriosList.Add(new Drop("Cobre", 2, 2));
             mineriosList.Add(new Drop("Ferro", 3, 5));
@@ -41,14 +51,14 @@ namespace ProjetoUC
 
         }
 
-        public Drop pickDrop() //Seleciona um drop dentro dos vetores 
+        static public Drop pickDrop() //Seleciona um drop dentro dos vetores 
         {
             int chance = rand.Next(0, 100); //gera uma chance de drop
             int iddrop;
 
             Drop drop;
 
-            if (chance < this.raridadeJoia) // se a chance de drop for maior q a raridade da joia
+            if (chance < raridadeJoia) // se a chance de drop for maior q a raridade da joia
             {
                 iddrop = rand.Next(0, mineriosList.Count); //escolhe uma das joias escolhendo um indice aleatorio
                 drop = mineriosList[iddrop];
