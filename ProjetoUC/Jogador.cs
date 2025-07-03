@@ -9,13 +9,25 @@ using ProjetoUC.Model;
 
 namespace ProjetoUC
 {
-    static class Jogador
+    class Jogador
     {
-        static public Pixel pixel = new Pixel('@', ConsoleColor.DarkYellow);
-        static public string nome = "player";
-        static public int posX = 2;
-        static public int posY = 2;
-         
+        static private Jogador instancia;
+
+        private Pixel pixel;
+        private string nome;
+        private int posX;
+        private int posY;
+
+        private Jogador()
+        {
+            this.posX = 2;
+            this.posY = 2;
+            this.nome = "player";
+            this.pixel = new Pixel('@', ConsoleColor.DarkYellow);
+        }
+        
+        static public Jogador Instancia => instancia??= new Jogador();
+
         public static void movimentar(ConsoleKey tecla)
         {
             //
