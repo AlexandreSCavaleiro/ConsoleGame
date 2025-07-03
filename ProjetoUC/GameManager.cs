@@ -8,21 +8,49 @@ using ProjetoUC.Model;
 
 namespace ProjetoUC
 {
-    static class GameManager
+    class GameManager
     {
-        static public List<Drop> mineriosList = new List<Drop>();
-        static public List<Drop> joiasList = new List<Drop>();
+        private GameManager() {
+            mineriosList = new List<Drop>();
+            joiasList = new List<Drop>();
+            raridadeJoia = 85;
+
+        }
+        static private GameManager instance;
+        static public GameManager Instance => instance ?? (instance = new GameManager());
 
 
-        static Random rand = new Random();
-        static int raridadeJoia = 85;
+        public List<Drop> mineriosList;
+        public List<Drop> joiasList;
+        public int raridadeJoia;
 
-        static public void inicializar() 
+        private Random rand = new Random();
+
+        //Função que monta todas as variaveis do ambiente do game 
+        public void inicializar() 
         {
-            //Função que preenche o campo nome do Jogador
+            //TODO
+            //atualmente, cria hardcodded as listas de itens
+            //futuramente, a ideia é carregar de um Json
+            mineriosList.Add(new Drop("Carvão", 1, 1));
+            mineriosList.Add(new Drop("Cobre", 2, 2));
+            mineriosList.Add(new Drop("Ferro", 3, 5));
+            mineriosList.Add(new Drop("Ouro", 4, 10));
+
+            joiasList.Add(new Drop("Esmeralda", 5, 30));
+            joiasList.Add(new Drop("Safira", 6, 50));
+            joiasList.Add(new Drop("Rubi", 7, 80));
+            joiasList.Add(new Drop("Diamante", 8, 100));
+
+            startJogador();
+        }
+
+        //Função que preenche o campo nome do Jogador
+        public void startJogador()
+        {
             Console.WriteLine("""
-                    
-                    Olá Jogador, Bem vindo!
+        
+                        Olá Jogador, Bem vindo!
                     Escreva seu nome aseguir por favor.
 
                 """);
@@ -33,26 +61,13 @@ namespace ProjetoUC
             string nome = Console.ReadLine();
             if (nome.Count() > 0)
             {
-                Jogador.nome = nome;
+                Jogador.Instance.nome = nome;
+                //Jogador.nome = nome;
             }
-
-            //TODO
-            //atualmente, cria hardcodded as listas de itens
-            //futuramente, a ideia é carregar de um Json
-            mineriosList.Add(new Drop("Carvão", 1, 1));
-            mineriosList.Add(new Drop("Cobre", 2, 2));
-            mineriosList.Add(new Drop("Ferro", 3, 5));
-            mineriosList.Add(new Drop("Ouro", 4, 10));
-
-      
-            joiasList.Add(new Drop("Esmeralda", 5, 30));
-            joiasList.Add(new Drop("Safira", 6, 50));
-            joiasList.Add(new Drop("Rubi", 7, 80));
-            joiasList.Add(new Drop("Diamante", 8, 100));
-
         }
 
-        static public Drop pickDrop() //Seleciona um drop dentro dos vetores 
+        //Seleciona um drop dentro dos vetores
+        public Drop pickDrop()  
         {
             int chance = rand.Next(0, 100); //gera uma chance de drop
             int iddrop;

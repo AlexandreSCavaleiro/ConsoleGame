@@ -36,10 +36,11 @@ namespace ProjetoUC
         }
 
 
-        public static async Task Main()
+        public static void Main()
         {
+            GameManager GM = GameManager.Instance;
 
-            GameManager.inicializar(); 
+            GM.inicializar(); 
             Persistence persisManager = new Persistence();
 
             ConsoleKey op;
@@ -100,7 +101,7 @@ namespace ProjetoUC
                     case ConsoleKey.D4: //pickdrop pra n ter que ficar minerando enquanto to testando
                         clean();
                         Console.WriteLine("    Você foi minerar e encontrou");
-                        GameManager.pickDrop();
+                        GM.pickDrop();
                         break;
 
 

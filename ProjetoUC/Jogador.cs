@@ -13,26 +13,24 @@ namespace ProjetoUC
     {
         static private Jogador instancia;
 
-        private Pixel pixel;
-        private string nome;
-        private int posX;
-        private int posY;
+        public Pixel pixel;
+        public string nome;
+        private int posX = 2;
+        private int posY = 2;
 
         private Jogador()
         {
-            this.posX = 2;
-            this.posY = 2;
             this.nome = "player";
             this.pixel = new Pixel('@', ConsoleColor.DarkYellow);
         }
         
-        static public Jogador Instancia => instancia??= new Jogador();
+        static public Jogador Instance => instancia??= new Jogador();
 
         public static void movimentar(ConsoleKey tecla)
         {
             //
-            int tempX = posX;
-            int tempY = posY;
+            int tempX = instancia.posX ;
+            int tempY = instancia.posY;
 
             switch (tecla)
             {
@@ -68,17 +66,17 @@ namespace ProjetoUC
                     Map.desenharMapa();
                     Console.WriteLine("============================================================");
                     Console.WriteLine("    Ao quebrar a pedra encontra: ");
-                    GameManager.pickDrop();
+                    GameManager.Instance.pickDrop();
                     Console.WriteLine("Aperte uma tecla para prosseguir!  ");
                     Console.WriteLine("============================================================");
 
                     Console.ReadKey(true);
 
                 }
-                Map.mapa[posX,posY] = Map.espaco;
+                Map.mapa[instancia.posX, instancia.posY] = Map.espaco;
                 Map.mapa[tempX, tempY] = Map.player;
-                posX = tempX;
-                posY = tempY;
+                instancia.posX = tempX;
+                instancia.posY = tempY;
             }
         }
     }
