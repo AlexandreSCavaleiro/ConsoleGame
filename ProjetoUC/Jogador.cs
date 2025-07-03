@@ -15,7 +15,7 @@ namespace ProjetoUC
 
         public Pixel pixel;
         public string nome;
-        public Inv inventario;
+        public Inventario inventario;
         public int posX = 2;
         public int posY = 2;
 
@@ -23,7 +23,7 @@ namespace ProjetoUC
         {
             this.nome = "player";
             this.pixel = new Pixel('@', ConsoleColor.DarkYellow);
-            this.inventario = Inv.Instance;
+            this.inventario = Inventario.Instance;
         }
         static public Jogador Instance => instancia??= new Jogador();
 

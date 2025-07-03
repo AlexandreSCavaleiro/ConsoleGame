@@ -24,7 +24,7 @@ namespace ProjetoUC
 
         }
 
-        public void NovoInventário() //SUBSTITUI o arquivo json pelo inventário atual
+        public void NovoInventário() //SUBSTITUI o arquivo json pelo inventário atual // 8.SAVE
         {
             Console.WriteLine("""
                     ESSA FUNÇÃO DELETA O ARQUIVO ANTERIOR !
@@ -39,7 +39,9 @@ namespace ProjetoUC
 
 
             if (tecla == ConsoleKey.S) {
-                var InvJson = JsonSerializer.Serialize(Inv.inventario); //serializa o inventario como um json
+                var InvJson = JsonSerializer.Serialize(Jogador.Instance.inventario.slots); //serializa o inventario como um json
+
+                //Console.WriteLine(InvJson);
 
                 File.WriteAllText(path, InvJson); //escreve no arquivo
 
@@ -62,7 +64,7 @@ namespace ProjetoUC
             //Console.WriteLine(InvJson);
         }
 
-        public void carregaInventario() //carrega do arquivo json
+        public void carregaInventario() //carrega do arquivo json no inventario // 9.LOAD
         {
             Console.WriteLine("""
                     ESSA FUNÇÃO SUBSTITUI O INVENTÁRIO QUE VOCÊ ESTÁ !
@@ -77,9 +79,9 @@ namespace ProjetoUC
             if (tecla == ConsoleKey.S)
             {
                 var jString = File.ReadAllText(path); //le o testo e carrega na var jString
-                var InvJson = JsonSerializer.Deserialize<List<SlotInventario>>(jString); // DEserializa o json em uma variavel 
+                var InvJson = JsonSerializer.Deserialize<List<Slot>>(jString); // DEserializa o json em uma variavel 
 
-                Inv.setInvTo(InvJson); //copia a lista para o inventario SUBSTITUI o que estava lá
+                Jogador.Instance.inventario.setInvTo(InvJson); //copia a lista para o inventario SUBSTITUI o que estava lá
 
                 //confirma o carregamento
                 Console.WriteLine("""

@@ -7,24 +7,24 @@ using ProjetoUC.Model;
 
 namespace ProjetoUC
 {
-    class Inv
+    class Inventario
     {
 
-        private Inv()
+        private Inventario()
         {
-            inventario = new List<SlotInventario>();
+            slots = new List<Slot>();
 
         }
-        static private Inv instance;
-        static public Inv Instance => instance ?? (instance = new Inv());
+        static private Inventario instance;
+        static public Inventario Instance => instance ?? (instance = new Inventario());
 
 
-        private List<SlotInventario> inventario;
+        public List<Slot> slots;
 
         public void add(Drop drop)
         {
             bool tem = false;
-            foreach (var slot in inventario)
+            foreach (var slot in slots)
             {
                 if (slot.Drop.nome == drop.nome) 
                 {
@@ -34,18 +34,18 @@ namespace ProjetoUC
                 }
                 
             }
-            if (!tem || inventario.Count < 1)
+            if (!tem || slots.Count < 1)
             { 
-                SlotInventario item = new SlotInventario(drop,1);
-                inventario.Add(item);
+                Slot item = new Slot(drop,1);
+                slots.Add(item);
             }
             
         }
 
-        public void addAsSLot(SlotInventario drop)
+        public void addAsSLot(Slot drop)
         {
             bool tem = false;
-            foreach (var slot in inventario)
+            foreach (var slot in slots)
             {
                 if (slot.Drop.nome == drop.Drop.nome)
                 {
@@ -55,10 +55,10 @@ namespace ProjetoUC
                 }
 
             }
-            if (!tem || inventario.Count < 1)
+            if (!tem || slots.Count < 1)
             {
-                SlotInventario item = drop;
-                inventario.Add(item);
+                Slot item = drop;
+                slots.Add(item);
             }
         }
 
@@ -66,8 +66,8 @@ namespace ProjetoUC
         {
             double total = 0;
 
-            if (inventario.Count > 0)
-                foreach (var item in inventario)
+            if (slots.Count > 0)
+                foreach (var item in slots)
                 {
                     total += (item.Drop.valor * item.Quantidade);
                 }
@@ -76,15 +76,15 @@ namespace ProjetoUC
         }
         public void organizeInv()
         {
-            inventario.Sort((a, b) => b.Drop.valor.CompareTo(a.Drop.valor));
+            slots.Sort((a, b) => b.Drop.valor.CompareTo(a.Drop.valor));
         }
 
         public void showInv() //exibir todos os drops no inventário
         {
             organizeInv();
-            if (inventario.Count > 0)
+            if (slots.Count > 0)
             {
-                foreach (var item in inventario)
+                foreach (var item in slots)
                 {
                     Console.WriteLine($"""
                                 {item.Quantidade} x {item.Drop.nome} | +{item.Quantidade*item.Drop.valor}
@@ -102,12 +102,12 @@ namespace ProjetoUC
             }
         }
 
-        public void setInvTo(List<SlotInventario> lista)
+        public void setInvTo(List<Slot> lista)
         {
-            inventario.Clear();
+            slots.Clear();
             foreach (var item in lista)
             {
-                inventario.Add(item);
+                slots.Add(item);
             }
         }
         
