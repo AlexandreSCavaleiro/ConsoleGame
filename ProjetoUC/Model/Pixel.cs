@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetoUC
+namespace ProjetoUC.Model
 {
     class Pixel
     {
@@ -20,8 +20,8 @@ namespace ProjetoUC
 
         public void show()
         {
-            Console.ForegroundColor = this.cor; 
-            Console.Write(this.icone);
+            Console.ForegroundColor = cor; 
+            Console.Write(icone);
             Console.ForegroundColor = ConsoleColor.White;
         }
     }

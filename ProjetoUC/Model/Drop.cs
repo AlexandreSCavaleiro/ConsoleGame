@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetoUC
+namespace ProjetoUC.Model
 {
     public class Drop
     {
-        public String nome { get; set; }
+        public string nome { get; set; }
         public int id { get; set; }
         public int valor { get; set; }
 
@@ -33,7 +33,7 @@ namespace ProjetoUC
                 """);
         }
 
-        public String toString()
+        public string toString()
         {
             string retorno = $"{nome} | {id} | {valor}";
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Numerics;
+using ProjetoUC.Model;
 
 namespace ProjetoUC
 {
