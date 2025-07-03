@@ -55,7 +55,7 @@ namespace ProjetoUC
                     Map.desenharMapa();
                     Console.WriteLine("============================================================");
                     Console.WriteLine("    Ao quebrar a pedra encontra: ");
-                    Jogo.pickDrop();
+                    GameManager.pickDrop();
                     Console.WriteLine("Aperte uma tecla para prosseguir!  ");
                     Console.WriteLine("============================================================");
 

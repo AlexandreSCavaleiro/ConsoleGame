@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoUC
 {
-    static class Jogo
+    static class GameManager
     {
         static public List<Drop> mineriosList = new List<Drop>();
         static public List<Drop> joiasList = new List<Drop>();
