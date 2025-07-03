@@ -84,7 +84,7 @@ namespace ProjetoUC
                         Um Minerio: {drop.nome} Você ganhou: +{drop.valor}
 
                     """);
-                Inv.add(drop); //adiciona no inventário
+                Jogador.Instance.inventario.add(drop); //adiciona no inventário
             }
             else // se a chance for menor q a da raridade da joia, faz a mesma coisa mas com o vetor de minérios.
             {
@@ -94,7 +94,7 @@ namespace ProjetoUC
                         Uma Jóia Rara: {drop.nome} Você ganhou: +{drop.valor}
 
                     """);
-                Inv.add(drop);
+                Jogador.Instance.inventario.add(drop); //adiciona no inventário
             }
 
             //drop.show();

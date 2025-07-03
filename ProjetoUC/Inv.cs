@@ -7,11 +7,21 @@ using ProjetoUC.Model;
 
 namespace ProjetoUC
 {
-    static class Inv
+    class Inv
     {
-        public static List<SlotInventario> inventario = new List<SlotInventario>() ;
 
-        public static void add(Drop drop)
+        private Inv()
+        {
+            inventario = new List<SlotInventario>();
+
+        }
+        static private Inv instance;
+        static public Inv Instance => instance ?? (instance = new Inv());
+
+
+        private List<SlotInventario> inventario;
+
+        public void add(Drop drop)
         {
             bool tem = false;
             foreach (var slot in inventario)
@@ -32,7 +42,7 @@ namespace ProjetoUC
             
         }
 
-        public static void addAsSLot(SlotInventario drop)
+        public void addAsSLot(SlotInventario drop)
         {
             bool tem = false;
             foreach (var slot in inventario)
@@ -52,7 +62,7 @@ namespace ProjetoUC
             }
         }
 
-        public static double totalPontos() //retorna a soma total de pontos dos itens no inventario
+        public double totalPontos() //retorna a soma total de pontos dos itens no inventario
         {
             double total = 0;
 
@@ -64,12 +74,12 @@ namespace ProjetoUC
             return total;
 
         }
-        public static void organizeInv()
+        public void organizeInv()
         {
             inventario.Sort((a, b) => b.Drop.valor.CompareTo(a.Drop.valor));
         }
 
-        public static void showInv() //exibir todos os drops no inventário
+        public void showInv() //exibir todos os drops no inventário
         {
             organizeInv();
             if (inventario.Count > 0)
@@ -92,7 +102,7 @@ namespace ProjetoUC
             }
         }
 
-        public static void setInvTo(List<SlotInventario> lista)
+        public void setInvTo(List<SlotInventario> lista)
         {
             inventario.Clear();
             foreach (var item in lista)

@@ -68,7 +68,7 @@ namespace ProjetoUC
                                 Voltando a superficie.....
                                 Seu inventário depois da mineração: 
                             """);
-                        Inv.showInv();
+                        Jogador.Instance.inventario.showInv();
 
                         break;
 
@@ -78,7 +78,7 @@ namespace ProjetoUC
                         clean();
                         Console.WriteLine($"""
 
-                            Voce tem {Inv.totalPontos()} pontos.
+                            Voce tem {Jogador.Instance.inventario.totalPontos()} pontos.
 
                         """);
 
@@ -92,7 +92,7 @@ namespace ProjetoUC
                                 Seu inventário no momento: 
 
                             """);
-                        Inv.showInv();
+                        Jogador.Instance.inventario.showInv();
                         
                         break;
 

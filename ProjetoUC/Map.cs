@@ -13,7 +13,7 @@ namespace ProjetoUC
         static public Pixel[,] mapa;
 
         //Icones do mapa
-        static public Pixel player = Jogador.pixel;
+        static public Pixel player = Jogador.Instance.pixel;
         static public Pixel parede = new Pixel('#', ConsoleColor.DarkGray);
         static public Pixel minerio = new Pixel('*', ConsoleColor.Cyan);
         static public Pixel escada = new Pixel('H', ConsoleColor.White);
@@ -59,7 +59,7 @@ namespace ProjetoUC
                 var tecla = Console.ReadKey(true).Key; //le a tecla do usuário
 
                 //atualizarPosicao(tecla); //usa a tecla para modificar a matriz
-                Jogador.movimentar(tecla);
+                Jogador.Instance.movimentar(tecla);
                 
             }
         }
@@ -83,8 +83,8 @@ namespace ProjetoUC
         // Função que inicia a matriz do mapa
         static public void iniciarMapa()
         {
-            Jogador.posX = 2;
-            Jogador.posY = 2;
+            Jogador.Instance.posX = 2;
+            Jogador.Instance.posY = 2;
             
             Random rand = new Random();
             mapa = new Pixel[largura, altura];
@@ -114,7 +114,7 @@ namespace ProjetoUC
                 mapa[rand.Next(1, largura - 1), rand.Next(1, altura - 1)] = minerio;
             }
 
-            mapa[Jogador.posX, Jogador.posY] = player; //player
+            mapa[Jogador.Instance.posX, Jogador.Instance.posY] = player; //player
             mapa[1, 1] = escada; //saida
 
         }

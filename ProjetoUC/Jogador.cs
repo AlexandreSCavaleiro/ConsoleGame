@@ -15,22 +15,23 @@ namespace ProjetoUC
 
         public Pixel pixel;
         public string nome;
-        private int posX = 2;
-        private int posY = 2;
+        public Inv inventario;
+        public int posX = 2;
+        public int posY = 2;
 
         private Jogador()
         {
             this.nome = "player";
             this.pixel = new Pixel('@', ConsoleColor.DarkYellow);
+            this.inventario = Inv.Instance;
         }
-        
         static public Jogador Instance => instancia??= new Jogador();
 
-        public static void movimentar(ConsoleKey tecla)
+        public void movimentar(ConsoleKey tecla)
         {
             //
-            int tempX = instancia.posX ;
-            int tempY = instancia.posY;
+            int tempX = posX ;
+            int tempY = posY;
 
             switch (tecla)
             {
@@ -73,10 +74,10 @@ namespace ProjetoUC
                     Console.ReadKey(true);
 
                 }
-                Map.mapa[instancia.posX, instancia.posY] = Map.espaco;
+                Map.mapa[posX, posY] = Map.espaco;
                 Map.mapa[tempX, tempY] = Map.player;
-                instancia.posX = tempX;
-                instancia.posY = tempY;
+                posX = tempX;
+                posY = tempY;
             }
         }
     }
