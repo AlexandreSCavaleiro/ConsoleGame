@@ -24,7 +24,8 @@ namespace ProjetoUC
 
         }
 
-        public void NovoInventário() //SUBSTITUI o arquivo json pelo inventário atual // 8.SAVE
+        //SUBSTITUI o arquivo json pelo inventário atual // 8.SAVE
+        public void NovoInventário() 
         {
             Console.WriteLine("""
                     ESSA FUNÇÃO DELETA O ARQUIVO ANTERIOR !
@@ -64,7 +65,8 @@ namespace ProjetoUC
             //Console.WriteLine(InvJson);
         }
 
-        public void carregaInventario() //carrega do arquivo json no inventario // 9.LOAD
+        //carrega do arquivo json no inventario // 9.LOAD
+        public void carregaInventario() 
         {
             Console.WriteLine("""
                     ESSA FUNÇÃO SUBSTITUI O INVENTÁRIO QUE VOCÊ ESTÁ !

@@ -19,11 +19,9 @@ namespace ProjetoUC
         static public Pixel escada = new Pixel('H', ConsoleColor.White);
         static public Pixel espaco = new Pixel(' ', ConsoleColor.Black);
         
-        
         //AxL do mapa 
         static int largura = 40;
         static int altura = 15;
-
 
         // var do loop do mapa (feio, eu sei)
         static public bool jogando = true;
@@ -63,7 +61,6 @@ namespace ProjetoUC
                 
             }
         }
-
 
         // Função que cuida da exibição do mapa 
         static public void desenharMapa()

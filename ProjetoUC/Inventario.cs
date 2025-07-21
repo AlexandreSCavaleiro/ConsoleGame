@@ -9,18 +9,18 @@ namespace ProjetoUC
 {
     class Inventario
     {
-
+        // instancia de singleton
         private Inventario()
         {
             slots = new List<Slot>();
-
         }
         static private Inventario instance;
         static public Inventario Instance => instance ?? (instance = new Inventario());
 
-
+        // attr
         public List<Slot> slots;
 
+        //Funcao para adicionar drops ao inventario
         public void add(Drop drop)
         {
             bool tem = false;
@@ -42,6 +42,7 @@ namespace ProjetoUC
             
         }
 
+        //Funcao para adicionar drops(dentro de slots) ao inventário
         public void addAsSLot(Slot drop)
         {
             bool tem = false;
@@ -62,6 +63,7 @@ namespace ProjetoUC
             }
         }
 
+        //Funcao para retornar soma total de pontos no inv
         public double totalPontos() //retorna a soma total de pontos dos itens no inventario
         {
             double total = 0;
@@ -74,11 +76,14 @@ namespace ProjetoUC
             return total;
 
         }
+
+        //Funcao para organizar inventario
         public void organizeInv()
         {
             slots.Sort((a, b) => b.Drop.valor.CompareTo(a.Drop.valor));
         }
 
+        //Funcao que exibe inventario na tela
         public void showInv() //exibir todos os drops no inventário
         {
             organizeInv();
@@ -102,6 +107,7 @@ namespace ProjetoUC
             }
         }
 
+        //Funcao que substitui o inv por um inv
         public void setInvTo(List<Slot> lista)
         {
             slots.Clear();
