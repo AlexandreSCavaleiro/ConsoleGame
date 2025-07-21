@@ -16,8 +16,7 @@ namespace ProjetoUC
         public Pixel pixel;
         public string nome;
         public Inventario inventario;
-        public int posX = 2;
-        public int posY = 2;
+        public Vector2 pos = new Vector2(2,2);
 
         private Jogador()
         {
@@ -30,37 +29,39 @@ namespace ProjetoUC
         public void movimentar(ConsoleKey tecla)
         {
 
-            int tempX = posX ;
-            int tempY = posY;
+            int tempX = pos.x;
+            int tempY = pos.y;
+            int x = pos.x;
+            int y = pos.y;
 
             switch (tecla)
             {
-
                 case ConsoleKey.LeftArrow:
-                case ConsoleKey.A:
-                    tempX--; //Movimenta para a Esquerda
+                case ConsoleKey.A: //Movimenta para a Esquerda
+                    x = pos.Left; 
                     break;
                 case ConsoleKey.RightArrow:
-                case ConsoleKey.D:
-                    tempX++; //Movimenta para a Direita
+                case ConsoleKey.D: //Movimenta para a Direita
+                    x = pos.Rigth; 
                     break;
                 case ConsoleKey.UpArrow:
-                case ConsoleKey.W:
-                    tempY--; //Movimenta para Cima
+                case ConsoleKey.W: //Movimenta para Cima
+                    y = pos.Up; 
                     break;
                 case ConsoleKey.DownArrow:
-                case ConsoleKey.S:
-                    tempY++; //Movimenta para baixo
+                case ConsoleKey.S: //Movimenta para baixo
+                    y = pos.Down; 
                     break;
             }
-            if (Map.mapa[tempX, tempY] == Map.escada)
+
+
+            if (Map.mapa[x, y] == Map.escada)
             {
                 Map.jogando = false;
-
             }
-            if (Map.mapa[tempX, tempY] != Map.parede)
+            if (Map.mapa[x, y] != Map.parede)
             {
-                if (Map.mapa[tempX, tempY] == Map.minerio)
+                if (Map.mapa[x, y] == Map.minerio)
                 {
                     //TODO pickdrop
                     Console.Clear();
@@ -74,10 +75,15 @@ namespace ProjetoUC
                     Console.ReadKey(true);
 
                 }
-                Map.mapa[posX, posY] = Map.espaco;
-                Map.mapa[tempX, tempY] = Map.player;
-                posX = tempX;
-                posY = tempY;
+                Map.mapa[tempX, tempY] = Map.espaco;
+                Map.mapa[x, y] = Map.player;
+                pos.x = x;
+                pos.y = y;
+            }
+            else
+            {
+                pos.x = tempX;
+                pos.y = tempY;
             }
         }
     }

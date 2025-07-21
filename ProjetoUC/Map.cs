@@ -80,8 +80,8 @@ namespace ProjetoUC
         // Função que inicia a matriz do mapa
         static public void iniciarMapa()
         {
-            Jogador.Instance.posX = 2;
-            Jogador.Instance.posY = 2;
+            Jogador.Instance.pos.x = 2;
+            Jogador.Instance.pos.y = 2;
             
             Random rand = new Random();
             mapa = new Pixel[largura, altura];
@@ -111,7 +111,7 @@ namespace ProjetoUC
                 mapa[rand.Next(1, largura - 1), rand.Next(1, altura - 1)] = minerio;
             }
 
-            mapa[Jogador.Instance.posX, Jogador.Instance.posY] = player; //player
+            mapa[Jogador.Instance.pos.x, Jogador.Instance.pos.y] = player; //player
             mapa[1, 1] = escada; //saida
 
         }
