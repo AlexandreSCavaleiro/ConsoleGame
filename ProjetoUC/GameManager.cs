@@ -10,6 +10,7 @@ namespace ProjetoUC
 {
     class GameManager
     {
+        // instancia de singleton
         private GameManager() {
             mineriosList = new List<Drop>();
             joiasList = new List<Drop>();
@@ -19,11 +20,12 @@ namespace ProjetoUC
         static private GameManager instance;
         static public GameManager Instance => instance ?? (instance = new GameManager());
 
-
-        public List<Drop> mineriosList;
+        // Attrs
+        public List<Drop> mineriosList; 
         public List<Drop> joiasList;
         public int raridadeJoia;
 
+        // Objetos 
         private Random rand = new Random();
 
         //Função que monta todas as variaveis do ambiente do game 
@@ -43,6 +45,8 @@ namespace ProjetoUC
             joiasList.Add(new Drop("Diamante", 8, 100));
 
             startJogador();
+
+            Menu.Instance.startMenu();
         }
 
         //Função que preenche o campo nome do Jogador
