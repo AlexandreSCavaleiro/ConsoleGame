@@ -29,6 +29,8 @@ namespace ProjetoUC
         public void movimentar(ConsoleKey tecla)
         {
 
+            Map M = Map.Instance;
+
             int tempX = pos.x;
             int tempY = pos.y;
             int x = pos.x;
@@ -55,17 +57,17 @@ namespace ProjetoUC
             }
 
 
-            if (Map.mapa[x, y] == Map.escada)
+            if (M.mapa[x, y] == M.escada)
             {
-                Map.jogando = false;
+                M.jogando = false;
             }
-            if (Map.mapa[x, y] != Map.parede)
+            if (M.mapa[x, y] != M.parede)
             {
-                if (Map.mapa[x, y] == Map.minerio)
+                if (M.mapa[x, y] == M.minerio)
                 {
                     //TODO pickdrop
                     Console.Clear();
-                    Map.desenharMapa();
+                    M.desenharMapa();
                     Console.WriteLine("============================================================");
                     Console.WriteLine("    Ao quebrar a pedra encontra: ");
                     GameManager.Instance.pickDrop();
@@ -75,8 +77,8 @@ namespace ProjetoUC
                     Console.ReadKey(true);
 
                 }
-                Map.mapa[tempX, tempY] = Map.espaco;
-                Map.mapa[x, y] = Map.player;
+                M.mapa[tempX, tempY] = M.espaco;
+                M.mapa[x, y] = M.player;
                 pos.x = x;
                 pos.y = y;
             }

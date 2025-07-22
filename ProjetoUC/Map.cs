@@ -7,26 +7,34 @@ using ProjetoUC.Model;
 
 namespace ProjetoUC
 {
-    static class Map
+    class Map
     {
         //mapa vazio
-        static public Pixel[,] mapa;
+        public Pixel[,] mapa;
 
         //Icones do mapa
-        static public Pixel player = Jogador.Instance.pixel;
-        static public Pixel parede = new Pixel('#', ConsoleColor.DarkGray);
-        static public Pixel minerio = new Pixel('*', ConsoleColor.Cyan);
-        static public Pixel escada = new Pixel('H', ConsoleColor.White);
-        static public Pixel espaco = new Pixel(' ', ConsoleColor.Black);
+        public Pixel player = Jogador.Instance.pixel;
+        public Pixel parede = new Pixel('#', ConsoleColor.DarkGray);
+        public Pixel minerio = new Pixel('*', ConsoleColor.Cyan);
+        public Pixel escada = new Pixel('H', ConsoleColor.White);
+        public Pixel espaco = new Pixel(' ', ConsoleColor.Black);
         
         //AxL do mapa 
-        static int largura = 40;
-        static int altura = 15;
+        int largura = 40;
+        int altura = 15;
 
         // var do loop do mapa (feio, eu sei)
-        static public bool jogando = true;
+        public bool jogando = true;
 
-        static public void gerarMapa() //a função principal de mapa
+        //Singleton
+        static private Map instancia;
+        private Map()
+        {
+
+        }
+        static public Map Instance => instancia ??= new Map();
+
+        public void gerarMapa() //a função principal de mapa
         { 
             jogando = true ;
             iniciarMapa(); //popule
@@ -61,9 +69,9 @@ namespace ProjetoUC
                 
             }
         }
-
+        
         // Função que cuida da exibição do mapa 
-        static public void desenharMapa()
+        public void desenharMapa()
         {
             for (int y = 0; y < altura; y++)
             {
@@ -78,7 +86,7 @@ namespace ProjetoUC
         }
 
         // Função que inicia a matriz do mapa
-        static public void iniciarMapa()
+        public void iniciarMapa()
         {
             Jogador.Instance.pos.x = 2;
             Jogador.Instance.pos.y = 2;
