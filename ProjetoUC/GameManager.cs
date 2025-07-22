@@ -14,7 +14,7 @@ namespace ProjetoUC
         private GameManager() {
             mineriosList = new List<Drop>();
             joiasList = new List<Drop>();
-            raridadeJoia = 85;
+            raridadeJoia = 85; //sim, hardcodded
 
         }
         static private GameManager instance;
@@ -28,25 +28,14 @@ namespace ProjetoUC
         // Objetos 
         private Random rand = new Random();
 
-        //Função que monta todas as variaveis do ambiente do game 
+        //FUNÇÃO PRINCIPAL DO JOGO CONTROLA O FUNCIONAMENTO DO JOGO EM SI
         public void inicializar() 
         {
-            //TODO
-            //atualmente, cria hardcodded as listas de itens
-            //futuramente, a ideia é carregar de um Json
-            mineriosList.Add(new Drop("Carvão", 1, 1));
-            mineriosList.Add(new Drop("Cobre", 2, 2));
-            mineriosList.Add(new Drop("Ferro", 3, 5));
-            mineriosList.Add(new Drop("Ouro", 4, 10));
 
-            joiasList.Add(new Drop("Esmeralda", 5, 30));
-            joiasList.Add(new Drop("Safira", 6, 50));
-            joiasList.Add(new Drop("Rubi", 7, 80));
-            joiasList.Add(new Drop("Diamante", 8, 100));
+            fillItems(); // preenche a lista de itens
+            startJogador(); // inicia o jogador
 
-            startJogador();
-
-            Menu.Instance.startMenu();
+            Menu.Instance.startMenu(); //lança o menu
         }
 
         //Função que preenche o campo nome do Jogador
@@ -70,6 +59,23 @@ namespace ProjetoUC
             }
         }
 
+        //Função para preencher as listas de items
+        public void fillItems()
+        {
+            //TODO
+            //atualmente, cria hardcodded as listas de itens
+            //futuramente, a ideia é carregar de um Json
+            mineriosList.Add(new Drop("Carvão", 1, 1));
+            mineriosList.Add(new Drop("Cobre", 2, 2));
+            mineriosList.Add(new Drop("Ferro", 3, 5));
+            mineriosList.Add(new Drop("Ouro", 4, 10));
+
+            joiasList.Add(new Drop("Esmeralda", 5, 30));
+            joiasList.Add(new Drop("Safira", 6, 50));
+            joiasList.Add(new Drop("Rubi", 7, 80));
+            joiasList.Add(new Drop("Diamante", 8, 100));
+        }
+        
         //Seleciona um drop dentro dos vetores
         public Drop pickDrop()  
         {
