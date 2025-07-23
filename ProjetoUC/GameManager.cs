@@ -18,7 +18,7 @@ namespace ProjetoUC
 
         }
         static private GameManager instance;
-        static public GameManager Instance => instance ?? (instance = new GameManager());
+        static public GameManager Instance => instance ??= new GameManager();
 
         // Attrs
         public List<Drop> mineriosList; 
