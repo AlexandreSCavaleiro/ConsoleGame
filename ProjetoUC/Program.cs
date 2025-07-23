@@ -12,7 +12,6 @@ namespace ProjetoUC
         public static void Main()
         {
             GameManager GM = GameManager.Instance;
-            GM.inicializar();
      
         } 
     } 

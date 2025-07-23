@@ -52,11 +52,8 @@ namespace ProjetoUC
 
             while (jogando)
             {
-
-                GameManager GM = GameManager.Instance;
                 Persistence persisManager = new Persistence();
                 
-
                 Console.Write("- Selecione uma opção: ");
 
                 op = Console.ReadKey(true).Key;
@@ -109,7 +106,7 @@ namespace ProjetoUC
                     case ConsoleKey.D4: //pickdrop pra n ter que ficar minerando enquanto to testando
                         clean();
                         Console.WriteLine("    Você foi minerar e encontrou");
-                        GM.pickDrop();
+                        GameManager.Instance.pickDrop();
                         break;
 
 
@@ -135,7 +132,7 @@ namespace ProjetoUC
                                 Ok, até a proxima! Volte logo!
 
                             """);
-                        jogando = false;
+                        GameManager.Instance.Stop();                        ;
                         break;
 
                     default:
