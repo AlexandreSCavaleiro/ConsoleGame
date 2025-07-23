@@ -8,14 +8,12 @@ using ProjetoUC.Model;
 
 namespace ProjetoUC
 {
-    class GameManager
+    class GameManager : MonoBehaviour
     {
         // instancia de singleton
         private GameManager() {
-            mineriosList = new List<Drop>();
-            joiasList = new List<Drop>();
-            raridadeJoia = 85; //sim, hardcodded
 
+            Run();
         }
         static private GameManager instance;
         static public GameManager Instance => instance ??= new GameManager();
@@ -27,16 +25,6 @@ namespace ProjetoUC
 
         // Objetos 
         private Random rand = new Random();
-
-        //FUNÇÃO PRINCIPAL DO JOGO CONTROLA O FUNCIONAMENTO DO JOGO EM SI
-        public void inicializar() 
-        {
-
-            fillItems(); // preenche a lista de itens
-            startJogador(); // inicia o jogador
-
-            Menu.Instance.startMenu(); //lança o menu
-        }
 
         //Função que preenche o campo nome do Jogador
         public void startJogador()
@@ -112,5 +100,21 @@ namespace ProjetoUC
             return drop; //retorna o drop
         }
 
+        public override void Awake()
+        {
+            mineriosList = new List<Drop>();
+            joiasList = new List<Drop>();
+
+            raridadeJoia = 85; //sim, hardcodded
+
+            fillItems(); // preenche a lista de itens
+
+            startJogador(); // inicia o jogador
+        }
+
+        public override void Update()
+        {
+            Menu.Instance.startMenu(); //lança o menu
+        }
     }
 }
