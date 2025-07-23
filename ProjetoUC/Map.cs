@@ -7,13 +7,13 @@ using ProjetoUC.Model;
 
 namespace ProjetoUC
 {
-    class Map
+    class Map : MonoBehaviour
     {
         //Singleton
         static private Map instancia;
         private Map()
         {
-
+            Run();
         }
         static public Map Instance => instancia ??= new Map();
 
@@ -31,45 +31,6 @@ namespace ProjetoUC
         int largura = 40;
         int altura = 15;
 
-        // var do loop do mapa (feio, eu sei)
-        public bool jogando = true;
-        
-        //Função inicial de mapa
-        public void gerarMapa() 
-        { 
-            jogando = true ;
-            iniciarMapa(); //popule
-            Console.Clear();
-            Console.WriteLine($"""
-                ============================================================
-                    Sobre a mineração:
-                        @ - Você
-                        # - Parede 
-                        H - Escada (voltar a superficie)
-                        * - Minério
-
-                    Movimente-se com WASD
-
-                - aperte qualquer tecla para continuar.
-
-                ============================================================
-                """);
-
-            Console.ReadKey(true);
-            Console.Clear();
-
-            while (jogando)
-            {
-                Console.SetCursorPosition(0,0);
-                desenharMapa(); //exiba
-
-                var tecla = Console.ReadKey(true).Key; //le a tecla do usuário
-
-                //atualizarPosicao(tecla); //usa a tecla para modificar a matriz
-                Jogador.Instance.movimentar(tecla);
-                
-            }
-        }
         
         // Função de exibição do mapa 
         public void desenharMapa()
@@ -123,6 +84,42 @@ namespace ProjetoUC
             mapa[Jogador.Instance.pos.x, Jogador.Instance.pos.y] = player; //player
             mapa[1, 1] = escada; //saida
 
+        }
+
+        public override void Start()
+        {
+            iniciarMapa(); //popule
+
+            Console.Clear();
+            Console.WriteLine($"""
+                ============================================================
+                    Sobre a mineração:
+                        @ - Você
+                        # - Parede 
+                        H - Escada (voltar a superficie)
+                        * - Minério
+
+                    Movimente-se com WASD
+
+                - aperte qualquer tecla para continuar.
+
+                ============================================================
+                """);
+            Console.ReadKey(true);
+            Console.Clear();
+
+        }
+
+        public override void Update()
+        {
+            Console.SetCursorPosition(0, 0);
+            desenharMapa(); //exiba
+
+            
+            var tecla = Console.ReadKey(true).Key; //le a tecla do usuário
+
+            //usa a tecla para modificar a matriz
+            Jogador.Instance.movimentar(tecla);
         }
     }
 }
