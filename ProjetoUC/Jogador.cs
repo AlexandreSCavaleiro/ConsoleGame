@@ -59,7 +59,7 @@ namespace ProjetoUC
 
             if (M.mapa[x, y] == M.escada)
             {
-                M.jogando = false;
+                M.Stop();
             }
             if (M.mapa[x, y] != M.parede)
             {

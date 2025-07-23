@@ -55,7 +55,7 @@ namespace ProjetoUC
 
                 GameManager GM = GameManager.Instance;
                 Persistence persisManager = new Persistence();
-                Map map = Map.Instance;
+                
 
                 Console.Write("- Selecione uma opção: ");
 
@@ -68,7 +68,8 @@ namespace ProjetoUC
                     case ConsoleKey.D1:
 
                         clean();
-                        map.gerarMapa();
+                        Map map = Map.Instance;
+                        
                         //map.iniciarMapa();
                         clean();
                         Console.WriteLine("""
