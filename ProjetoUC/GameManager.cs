@@ -11,10 +11,11 @@ namespace ProjetoUC
     class GameManager : MonoBehaviour
     {
         // instancia de singleton
-        private GameManager() {
-
+        private GameManager() 
+        {
             Run();
         }
+
         static private GameManager instance;
         static public GameManager Instance => instance ??= new GameManager();
 
@@ -22,6 +23,7 @@ namespace ProjetoUC
         public List<Drop> mineriosList; 
         public List<Drop> joiasList;
         public int raridadeJoia;
+        public bool minerando = false;
 
         // Objetos 
         private Random rand = new Random();
@@ -45,6 +47,7 @@ namespace ProjetoUC
                 Jogador.Instance.nome = nome;
                 //Jogador.nome = nome;
             }
+            Console.Clear();
         }
 
         //Função para preencher as listas de items
@@ -112,9 +115,19 @@ namespace ProjetoUC
             startJogador(); // inicia o jogador
         }
 
-        public override void Update()
+        public override void LateUpdate()
         {
-            Menu.Instance.startMenu(); //lança o menu
+            //Console.WriteLine(minerando);
+            if (!minerando)
+            {
+                Menu M = Menu.Instance; //lança o menu
+            }
+            else
+            {                 
+                Map map = Map.Instance;
+
+                
+            }
         }
     }
 }

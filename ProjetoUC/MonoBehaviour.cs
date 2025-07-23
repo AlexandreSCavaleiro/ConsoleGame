@@ -15,6 +15,7 @@ namespace ProjetoUC
 
         public void Run()
         {
+            rodando = true;
             Awake();
             Start();
 
@@ -24,7 +25,7 @@ namespace ProjetoUC
                     while (rodando) {
                         Update();
                         LateUpdate();
-                        Thread.Sleep(800);
+                        Thread.Sleep(200);
                     }
 
                     
@@ -36,6 +37,7 @@ namespace ProjetoUC
 
         public void Stop()
         {
+            
             this.rodando = false;
             OnDestroy();
             t.Join();

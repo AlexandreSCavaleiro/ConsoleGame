@@ -86,6 +86,11 @@ namespace ProjetoUC
 
         }
 
+        public override void Awake()
+        {
+            GameManager.Instance.minerando = true;
+        }
+
         public override void Start()
         {
             iniciarMapa(); //popule
@@ -105,21 +110,46 @@ namespace ProjetoUC
 
                 ============================================================
                 """);
+            //Console.WriteLine(GameManager.Instance.minerando);
             Console.ReadKey(true);
+
             Console.Clear();
+            desenharMapa();
 
         }
 
         public override void Update()
         {
-            Console.SetCursorPosition(0, 0);
-            desenharMapa(); //exiba
-
-            
             var tecla = Console.ReadKey(true).Key; //le a tecla do usuário
 
             //usa a tecla para modificar a matriz
             Jogador.Instance.movimentar(tecla);
+        }
+
+        public override void LateUpdate()
+        {
+            Console.SetCursorPosition(0, 0);
+            desenharMapa(); //exiba
+
+        }
+
+        public override void OnDestroy()
+        {
+            
+            //Menu m = Menu.Instance;
+            //m.clean();
+            Console.WriteLine("""
+                        Voltando a superficie.....
+                        Seu inventário depois da mineração: 
+                    """);
+            
+            Menu.Instance.Run(); 
+            Jogador.Instance.inventario.showInv();
+            Console.ReadKey(true);
+
+            
+            GameManager.Instance.minerando = false;
+            
         }
     }
 }

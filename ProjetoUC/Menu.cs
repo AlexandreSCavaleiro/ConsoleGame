@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,18 +8,30 @@ using ProjetoUC.Model;
 
 namespace ProjetoUC
 {
-    class Menu
+    class Menu : MonoBehaviour
     {
+        public ConsoleKey op;
+        public Persistence persisManager;
         // instancia de singleton
         private Menu()
         {
-           
+            Run();
         }
         static private Menu instance;
         static public Menu Instance => instance ?? (instance = new Menu());
 
+        public override void Awake()
+        {
+            exibirMenu();
+        }
+
+        public override void Update()
+        {
+            lancaMenu();
+        }
+
         // Função que exibe o menu na tela
-        public static void exibirMenu()
+        public void exibirMenu()
         {
             Console.WriteLine("""
                  =========================== Menu ===========================
@@ -37,117 +50,105 @@ namespace ProjetoUC
         }
 
         // Função qua mantem o menu no topo do console
-        public static void clean()
+        public void clean()
         {
             Console.Clear();
             exibirMenu();
             //Console.WriteLine("============================================================");
         }
 
-        public void startMenu()
+        public void lancaMenu()
         {
-            ConsoleKey op;
-            bool jogando = true;
-            exibirMenu();
-
-            while (jogando)
-            {
-                Persistence persisManager = new Persistence();
+            //exibirMenu();
                 
-                Console.Write("- Selecione uma opção: ");
+            Console.Write("- Selecione uma opção: ");
 
-                op = Console.ReadKey(true).Key;
+            op = Console.ReadKey(true).Key;
 
-                switch (op)
-                {
-                    //1. inicia mineração
-                    case ConsoleKey.NumPad1:
-                    case ConsoleKey.D1:
+            switch (op)
+            {
+                //1. inicia mineração
+                case ConsoleKey.NumPad1:
+                case ConsoleKey.D1:
 
-                        clean();
-                        Map map = Map.Instance;
-                        
-                        //map.iniciarMapa();
-                        clean();
-                        Console.WriteLine("""
-                                Voltando a superficie.....
-                                Seu inventário depois da mineração: 
-                            """);
-                        Jogador.Instance.inventario.showInv();
+                    GameManager.Instance.minerando = true;
+                    this.Stop();
+                    break;
 
-                        break;
+                //2. total de pontos
+                case ConsoleKey.NumPad2:
+                case ConsoleKey.D2: //total de pontos no inventario
+                    clean();
+                    Console.WriteLine($"""
 
-                    //2. total de pontos
-                    case ConsoleKey.NumPad2:
-                    case ConsoleKey.D2: //total de pontos no inventario
-                        clean();
-                        Console.WriteLine($"""
-
-                                Voce tem {Jogador.Instance.inventario.totalPontos()} pontos
+                            Voce tem {Jogador.Instance.inventario.totalPontos()} pontos
                             
-                            """);
+                        """);
 
-                        break;
+                    break;
 
-                    //3. mostrar inventário
-                    case ConsoleKey.NumPad3:
-                    case ConsoleKey.D3: //mostrar inventário
-                        clean();
-                        Console.WriteLine("""
-                                Seu inventário no momento: 
+                //3. mostrar inventário
+                case ConsoleKey.NumPad3:
+                case ConsoleKey.D3: //mostrar inventário
+                    clean();
+                    Console.WriteLine("""
+                            Seu inventário no momento: 
 
-                            """);
-                        Jogador.Instance.inventario.showInv();
+                        """);
+                    Jogador.Instance.inventario.showInv();
 
-                        break;
+                    break;
 
-                    //4. pickdrop antes da mineração pTESTE somente
-                    case ConsoleKey.NumPad4:
-                    case ConsoleKey.D4: //pickdrop pra n ter que ficar minerando enquanto to testando
-                        clean();
-                        Console.WriteLine("    Você foi minerar e encontrou");
-                        GameManager.Instance.pickDrop();
-                        break;
-
-
-                    //8. salva inventario
-                    case ConsoleKey.NumPad8:
-                    case ConsoleKey.D8: // salvar inventario no arquivo json
-                        clean();
-                        persisManager.NovoInventário();
-
-                        break;
-
-                    //9. carregar inventario
-                    case ConsoleKey.NumPad9:
-                    case ConsoleKey.D9:
-                        clean();
-                        persisManager.carregaInventario();
-                        break;
+                //4. pickdrop antes da mineração pTESTE somente
+                case ConsoleKey.NumPad4:
+                case ConsoleKey.D4: //pickdrop pra n ter que ficar minerando enquanto to testando
+                    clean();
+                    Console.WriteLine("    Você foi minerar e encontrou");
+                    GameManager.Instance.pickDrop();
+                    break;
 
 
-                    case ConsoleKey.Escape: //out
-                        Console.WriteLine("""
+                //8. salva inventario
+                case ConsoleKey.NumPad8:
+                case ConsoleKey.D8:
 
-                                Ok, até a proxima! Volte logo!
+                    persisManager = new Persistence();
+                    clean();
+                    persisManager.NovoInventário();
+                    break;
 
-                            """);
-                        GameManager.Instance.Stop();                        ;
-                        break;
+                //9. carregar inventario
+                case ConsoleKey.NumPad9:
+                case ConsoleKey.D9:
 
-                    default:
-                        Console.WriteLine("""
+                    persisManager = new Persistence();
+                    clean();
+                    persisManager.carregaInventario();
+                    break;
 
-                                Não entendi, Digite novamente algo valido!
 
-                            """);
-                        break;
+                case ConsoleKey.Escape: //out
+                    Console.WriteLine("""
 
-                }//switch
+                            Ok, até a proxima! Volte logo!
 
-                Console.WriteLine("============================================================");
+                        """);
+                    GameManager.Instance.Stop();
+                    this.Stop();
+                    break;
 
-            } //while
+                default:
+                    Console.WriteLine("""
+
+                            Não entendi, Digite novamente algo valido!
+
+                        """);
+                    break;
+
+            }//switch
+
+            Console.WriteLine("============================================================");
+
         }
 
 
