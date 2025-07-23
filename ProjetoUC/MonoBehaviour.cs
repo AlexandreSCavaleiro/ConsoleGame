@@ -27,7 +27,7 @@ namespace ProjetoUC
                         Thread.Sleep(800);
                     }
 
-                    OnDestroy();
+                    
                 }    
             );
 
@@ -37,6 +37,7 @@ namespace ProjetoUC
         public void Stop()
         {
             this.rodando = false;
+            OnDestroy();
             t.Join();
         }
 
