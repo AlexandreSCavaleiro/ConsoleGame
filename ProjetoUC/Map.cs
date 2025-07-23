@@ -9,6 +9,14 @@ namespace ProjetoUC
 {
     class Map
     {
+        //Singleton
+        static private Map instancia;
+        private Map()
+        {
+
+        }
+        static public Map Instance => instancia ??= new Map();
+
         //mapa vazio
         public Pixel[,] mapa;
 
@@ -25,16 +33,9 @@ namespace ProjetoUC
 
         // var do loop do mapa (feio, eu sei)
         public bool jogando = true;
-
-        //Singleton
-        static private Map instancia;
-        private Map()
-        {
-
-        }
-        static public Map Instance => instancia ??= new Map();
-
-        public void gerarMapa() //a função principal de mapa
+        
+        //Função inicial de mapa
+        public void gerarMapa() 
         { 
             jogando = true ;
             iniciarMapa(); //popule
@@ -70,7 +71,7 @@ namespace ProjetoUC
             }
         }
         
-        // Função que cuida da exibição do mapa 
+        // Função de exibição do mapa 
         public void desenharMapa()
         {
             for (int y = 0; y < altura; y++)
@@ -85,7 +86,7 @@ namespace ProjetoUC
             }
         }
 
-        // Função que inicia a matriz do mapa
+        // Função que popula a matriz do mapa
         public void iniciarMapa()
         {
             Jogador.Instance.pos.x = 2;

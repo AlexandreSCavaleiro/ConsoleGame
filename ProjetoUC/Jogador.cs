@@ -24,7 +24,7 @@ namespace ProjetoUC
             this.pixel = new Pixel('@', ConsoleColor.DarkYellow);
             this.inventario = Inventario.Instance;
         }
-        static public Jogador Instance => instancia??= new Jogador();
+        static public Jogador Instance => instancia ??= new Jogador();
 
         public void movimentar(ConsoleKey tecla)
         {
