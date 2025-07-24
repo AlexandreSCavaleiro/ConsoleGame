@@ -29,7 +29,7 @@ namespace ProjetoUC
         public void movimentar(ConsoleKey tecla)
         {
 
-            Map M = Map.Instance;
+            Map M = GameManager.Instance.mapa;
 
             int tempX = pos.x;
             int tempY = pos.y;
@@ -60,7 +60,6 @@ namespace ProjetoUC
             if (M.mapa[x, y] == M.escada)
             {
                 M.Out();
-                M.Stop();
             }
             if (M.mapa[x, y] != M.parede)
             {

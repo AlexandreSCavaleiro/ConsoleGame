@@ -24,6 +24,7 @@ namespace ProjetoUC
         public List<Drop> joiasList;
         public int raridadeJoia;
         public bool minerando = false;
+        public Map mapa;
 
         // Objetos 
         private Random rand = new Random();
@@ -115,18 +116,14 @@ namespace ProjetoUC
             startJogador(); // inicia o jogador
         }
 
-        public override void LateUpdate()
+        public override void Update()
         {
-            //Console.WriteLine(minerando);
             if (!minerando)
             {
-                Menu M = Menu.Instance; //lança o menu
+                Menu menu = Menu.Instance;
             }
-            else
-            {                 
-                Map map = Map.Instance;
-                           
-            }
+            
         }
+
     }
 }

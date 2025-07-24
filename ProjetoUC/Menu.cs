@@ -20,14 +20,14 @@ namespace ProjetoUC
         static private Menu instance;
         static public Menu Instance => instance ?? (instance = new Menu());
 
-        public override void Awake()
-        {
-            exibirMenu();
-        }
-
+        
         public override void Update()
         {
-            lancaMenu();
+            if (!GameManager.Instance.minerando)
+            {
+                lancaMenu();
+
+            }
         }
 
         // Função que exibe o menu na tela
@@ -53,14 +53,17 @@ namespace ProjetoUC
         public void clean()
         {
             Console.Clear();
-            exibirMenu();
+            //exibirMenu();
             //Console.WriteLine("============================================================");
         }
 
         public void lancaMenu()
         {
-            //exibirMenu();
-                
+            Console.Clear();
+            exibirMenu();
+
+            GameManager GM = GameManager.Instance;
+
             Console.Write("- Selecione uma opção: ");
 
             op = Console.ReadKey(true).Key;
@@ -71,15 +74,15 @@ namespace ProjetoUC
                 case ConsoleKey.NumPad1:
                 case ConsoleKey.D1:
 
-                    GameManager.Instance.minerando = true;
+                    GM.minerando = true;
+                    GM.mapa = new Map();
 
-                    this.Stop();
                     break;
 
                 //2. total de pontos
                 case ConsoleKey.NumPad2:
                 case ConsoleKey.D2: //total de pontos no inventario
-                    clean();
+                    //clean();
                     Console.WriteLine($"""
 
                             Voce tem {Jogador.Instance.inventario.totalPontos()} pontos
@@ -91,7 +94,7 @@ namespace ProjetoUC
                 //3. mostrar inventário
                 case ConsoleKey.NumPad3:
                 case ConsoleKey.D3: //mostrar inventário
-                    clean();
+                    //clean();
                     Console.WriteLine("""
                             Seu inventário no momento: 
 
@@ -103,7 +106,7 @@ namespace ProjetoUC
                 //4. pickdrop antes da mineração pTESTE somente
                 case ConsoleKey.NumPad4:
                 case ConsoleKey.D4: //pickdrop pra n ter que ficar minerando enquanto to testando
-                    clean();
+                    //clean();
                     Console.WriteLine("    Você foi minerar e encontrou");
                     GameManager.Instance.pickDrop();
                     break;
@@ -134,8 +137,8 @@ namespace ProjetoUC
                             Ok, até a proxima! Volte logo!
 
                         """);
-                    GameManager.Instance.Stop();
                     this.Stop();
+                    GM.Stop();
                     break;
 
                 default:
@@ -148,7 +151,8 @@ namespace ProjetoUC
 
             }//switch
 
-            Console.WriteLine("============================================================");
+            
+            //Console.WriteLine("============================================================");
 
         }
 

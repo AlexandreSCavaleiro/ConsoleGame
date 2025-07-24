@@ -9,13 +9,11 @@ namespace ProjetoUC
 {
     class Map : MonoBehaviour
     {
-        //Singleton
-        static private Map instancia;
-        private Map()
+        
+        public Map()
         {
             Run();
         }
-        static public Map Instance => instancia ??= new Map();
 
         //mapa vazio
         public Pixel[,] mapa;
@@ -102,18 +100,13 @@ namespace ProjetoUC
             Console.ReadKey(true);
 
             Console.Clear();
-            //this.Stop();
+
+            GameManager.Instance.minerando = false;
+            this.Stop();
         }
 
         public override void Awake()
         {
-            GameManager.Instance.minerando = true;
-        }
-
-        public override void Start()
-        {
-            iniciarMapa(); //popule
-
             Console.Clear();
             Console.WriteLine($"""
                 ============================================================
@@ -131,27 +124,32 @@ namespace ProjetoUC
                 """);
             //Console.WriteLine(GameManager.Instance.minerando);
             Console.ReadKey(true);
-
             Console.Clear();
+        }
+
+        public override void Start()
+        {
+            iniciarMapa(); //popule
+
             desenharMapa();
 
         }
 
         public override void Update()
         {
-            desenharMapa(); //exiba
+            if (GameManager.Instance.minerando)
+            {
 
-            var tecla = Console.ReadKey(true).Key; //le a tecla do usuário
+                //le a tecla do usuário
+                var tecla = Console.ReadKey(true).Key;
 
-            //usa a tecla para modificar a matriz
-            Jogador.Instance.movimentar(tecla);
+                //Jogador modifica a matriz
+                Jogador.Instance.movimentar(tecla);
+
+                //exibe o mapa
+                desenharMapa();
+            }
         }
 
-        public override void OnDestroy()
-        {
-            Menu.Instance.Run();
-            GameManager.Instance.minerando = false;
-            
-        }
     }
 }
