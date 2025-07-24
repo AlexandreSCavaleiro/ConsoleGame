@@ -25,7 +25,7 @@ namespace ProjetoUC
                     while (rodando) {
                         Update();
                         LateUpdate();
-                        Thread.Sleep(200);
+                        Thread.Sleep(100);
                     }
 
                     

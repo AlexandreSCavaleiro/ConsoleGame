@@ -31,7 +31,6 @@ namespace ProjetoUC
         int largura = 40;
         int altura = 15;
 
-        
         // Função de exibição do mapa 
         public void desenharMapa()
         {
@@ -86,6 +85,21 @@ namespace ProjetoUC
 
         }
 
+        // Função teste para saida do mapa
+        public void Out()
+        {
+            Console.WriteLine("""
+                        Voltando a superficie.....
+                        Seu inventário depois da mineração: 
+                    """);
+
+            Jogador.Instance.inventario.showInv();
+            Console.WriteLine(" > Aperte qualquer tecla pra continuar... ");
+            Console.ReadKey(true);
+
+            //this.Stop();
+        }
+
         public override void Awake()
         {
             GameManager.Instance.minerando = true;
@@ -135,19 +149,7 @@ namespace ProjetoUC
 
         public override void OnDestroy()
         {
-            
-            //Menu m = Menu.Instance;
-            //m.clean();
-            Console.WriteLine("""
-                        Voltando a superficie.....
-                        Seu inventário depois da mineração: 
-                    """);
-            
-            Menu.Instance.Run(); 
-            Jogador.Instance.inventario.showInv();
-            Console.ReadKey(true);
-
-            
+            Menu.Instance.Run();
             GameManager.Instance.minerando = false;
             
         }

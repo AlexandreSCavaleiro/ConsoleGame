@@ -59,6 +59,7 @@ namespace ProjetoUC
 
             if (M.mapa[x, y] == M.escada)
             {
+                M.Out();
                 M.Stop();
             }
             if (M.mapa[x, y] != M.parede)
@@ -69,7 +70,7 @@ namespace ProjetoUC
                     Console.Clear();
                     M.desenharMapa();
                     Console.WriteLine("============================================================");
-                    Console.WriteLine("    Ao quebrar a pedra encontra: ");
+                    Console.WriteLine("     Ao quebrar a pedra encontra: ");
                     GameManager.Instance.pickDrop();
                     Console.WriteLine("Aperte uma tecla para prosseguir!  ");
                     Console.WriteLine("============================================================");
