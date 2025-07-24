@@ -34,6 +34,8 @@ namespace ProjetoUC
         // Função de exibição do mapa 
         public void desenharMapa()
         {
+            Console.SetCursorPosition(0, 0);
+
             for (int y = 0; y < altura; y++)
             {
                 for (int x = 0; x < largura; x++)
@@ -88,6 +90,8 @@ namespace ProjetoUC
         // Função teste para saida do mapa
         public void Out()
         {
+            Console.Clear();
+            desenharMapa();
             Console.WriteLine("""
                         Voltando a superficie.....
                         Seu inventário depois da mineração: 
@@ -97,6 +101,7 @@ namespace ProjetoUC
             Console.WriteLine(" > Aperte qualquer tecla pra continuar... ");
             Console.ReadKey(true);
 
+            Console.Clear();
             //this.Stop();
         }
 
@@ -134,17 +139,12 @@ namespace ProjetoUC
 
         public override void Update()
         {
+            desenharMapa(); //exiba
+
             var tecla = Console.ReadKey(true).Key; //le a tecla do usuário
 
             //usa a tecla para modificar a matriz
             Jogador.Instance.movimentar(tecla);
-        }
-
-        public override void LateUpdate()
-        {
-            Console.SetCursorPosition(0, 0);
-            desenharMapa(); //exiba
-
         }
 
         public override void OnDestroy()

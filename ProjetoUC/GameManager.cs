@@ -125,8 +125,7 @@ namespace ProjetoUC
             else
             {                 
                 Map map = Map.Instance;
-
-                
+                           
             }
         }
     }

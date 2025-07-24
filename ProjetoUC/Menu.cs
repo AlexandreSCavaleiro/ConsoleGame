@@ -72,6 +72,7 @@ namespace ProjetoUC
                 case ConsoleKey.D1:
 
                     GameManager.Instance.minerando = true;
+
                     this.Stop();
                     break;
 
