@@ -13,6 +13,9 @@ namespace ProjetoUC
         private Thread t;
         private bool rodando = true;
 
+        public bool visible = false;
+        public bool input = false;
+
         public void Run()
         {
             rodando = true;
@@ -48,6 +51,9 @@ namespace ProjetoUC
         public virtual void Update() { }
         public virtual void LateUpdate() { }
         public virtual void OnDestroy() { }
+
+
+        public abstract void Draw();
 
     }
 }
