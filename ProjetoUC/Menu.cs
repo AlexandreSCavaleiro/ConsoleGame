@@ -25,6 +25,7 @@ namespace ProjetoUC
         {
             if (!GameManager.Instance.minerando)
             {
+                exibirMenu();
                 lancaMenu();
 
             }
@@ -59,12 +60,10 @@ namespace ProjetoUC
 
         public void lancaMenu()
         {
-            Console.Clear();
-            exibirMenu();
 
             GameManager GM = GameManager.Instance;
 
-            Console.Write("- Selecione uma opção: ");
+            //Console.Write("- Selecione uma opção: ");
 
             op = Console.ReadKey(true).Key;
 
@@ -82,7 +81,6 @@ namespace ProjetoUC
                 //2. total de pontos
                 case ConsoleKey.NumPad2:
                 case ConsoleKey.D2: //total de pontos no inventario
-                    //clean();
                     Console.WriteLine($"""
 
                             Voce tem {Jogador.Instance.inventario.totalPontos()} pontos
@@ -93,8 +91,7 @@ namespace ProjetoUC
 
                 //3. mostrar inventário
                 case ConsoleKey.NumPad3:
-                case ConsoleKey.D3: //mostrar inventário
-                    //clean();
+                case ConsoleKey.D3:
                     Console.WriteLine("""
                             Seu inventário no momento: 
 
@@ -106,7 +103,6 @@ namespace ProjetoUC
                 //4. pickdrop antes da mineração pTESTE somente
                 case ConsoleKey.NumPad4:
                 case ConsoleKey.D4: //pickdrop pra n ter que ficar minerando enquanto to testando
-                    //clean();
                     Console.WriteLine("    Você foi minerar e encontrou");
                     GameManager.Instance.pickDrop();
                     break;
@@ -115,18 +111,14 @@ namespace ProjetoUC
                 //8. salva inventario
                 case ConsoleKey.NumPad8:
                 case ConsoleKey.D8:
-
                     persisManager = new Persistence();
-                    clean();
                     persisManager.NovoInventário();
                     break;
 
                 //9. carregar inventario
                 case ConsoleKey.NumPad9:
                 case ConsoleKey.D9:
-
                     persisManager = new Persistence();
-                    clean();
                     persisManager.carregaInventario();
                     break;
 
