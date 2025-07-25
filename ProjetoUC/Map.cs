@@ -19,7 +19,7 @@ namespace ProjetoUC
         public Pixel[,] mapa;
 
         //Icones do mapa
-        public Pixel player = Jogador.Instance.pixel;
+        //public Pixel player = Jogador.Instance.pixel;
         public Pixel parede = new Pixel('#', ConsoleColor.DarkGray);
         public Pixel minerio = new Pixel('*', ConsoleColor.Cyan);
         public Pixel escada = new Pixel('H', ConsoleColor.White);
@@ -29,8 +29,10 @@ namespace ProjetoUC
         int largura = 40;
         int altura = 15;
 
+        GameManager GM = GameManager.Instance;
+
         // Função de exibição do mapa 
-        public void desenharMapa()
+        public override void Draw()
         {
             Console.SetCursorPosition(0, 0);
 
@@ -49,8 +51,10 @@ namespace ProjetoUC
         // Função que popula a matriz do mapa
         public void iniciarMapa()
         {
-            Jogador.Instance.pos.x = 2;
-            Jogador.Instance.pos.y = 2;
+            GameManager GM = GameManager.Instance;
+            //resetando a posição do player
+            GM.player.pos.x = 2;
+            GM.player.pos.y = 2;
             
             Random rand = new Random();
             mapa = new Pixel[largura, altura];
@@ -80,8 +84,8 @@ namespace ProjetoUC
                 mapa[rand.Next(1, largura - 1), rand.Next(1, altura - 1)] = minerio;
             }
 
-            mapa[Jogador.Instance.pos.x, Jogador.Instance.pos.y] = player; //player
-            mapa[1, 1] = escada; //saida
+            //saida
+            mapa[1, 1] = escada; 
 
         }
 
@@ -89,19 +93,21 @@ namespace ProjetoUC
         public void Out()
         {
             Console.Clear();
-            desenharMapa();
+            //Draw();
             Console.WriteLine("""
                         Voltando a superficie.....
                         Seu inventário depois da mineração: 
                     """);
 
-            Jogador.Instance.inventario.showInv();
+            GameManager.Instance.player.inventario.showInv();
             Console.WriteLine(" > Aperte qualquer tecla pra continuar... ");
             Console.ReadKey(true);
 
             Console.Clear();
+            
+            GM.menu.visible = true;
+            GM.menu.input = true;
 
-            GameManager.Instance.minerando = false;
             this.Stop();
         }
 
@@ -131,24 +137,11 @@ namespace ProjetoUC
         {
             iniciarMapa(); //popule
 
-            desenharMapa();
-
         }
 
         public override void Update()
         {
-            if (GameManager.Instance.minerando)
-            {
-
-                //le a tecla do usuário
-                var tecla = Console.ReadKey(true).Key;
-
-                //Jogador modifica a matriz
-                Jogador.Instance.movimentar(tecla);
-
-                //exibe o mapa
-                desenharMapa();
-            }
+            
         }
 
     }

@@ -10,13 +10,11 @@ namespace ProjetoUC
     class Inventario
     {
         // instancia de singleton
-        private Inventario()
+        public Inventario()
         {
             slots = new List<Slot>();
         }
-        static private Inventario instance;
-        static public Inventario Instance => instance ?? (instance = new Inventario());
-
+        
         // attr
         public List<Slot> slots;
 

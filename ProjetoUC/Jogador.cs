@@ -9,25 +9,37 @@ using ProjetoUC.Model;
 
 namespace ProjetoUC
 {
-    class Jogador
+    class Jogador : MonoBehaviour
     {
-        static private Jogador instancia;
-
-        public Pixel pixel;
-        public string nome;
-        public Inventario inventario;
-        public Vector2 pos = new Vector2(2,2);
-
-        private Jogador()
+        public Jogador()
         {
             this.nome = "player";
             this.pixel = new Pixel('@', ConsoleColor.DarkYellow);
-            this.inventario = Inventario.Instance;
+            this.inventario = new Inventario();
         }
-        static public Jogador Instance => instancia ??= new Jogador();
+
+        public string nome;
+        public Pixel pixel;
+        public Inventario inventario;
+        public Vector2 pos = new Vector2(2,2);
+
+        public override void Draw()
+        {
+            Console.WriteLine($"{pos.x} {pos.y}");
+            Console.SetCursorPosition(pos.x, pos.y);
+            pixel.show();
+        }
+
+        public override void Update()
+        {
+            //le a tecla do usuário
+            var tecla = Console.ReadKey(true).Key;
+            movimentar(tecla);
+        }
 
         public void movimentar(ConsoleKey tecla)
         {
+            if (!input) return;
 
             Map M = GameManager.Instance.mapa;
 
@@ -67,7 +79,7 @@ namespace ProjetoUC
                 {
                     //TODO pickdrop
                     Console.Clear();
-                    M.desenharMapa();
+                    //M.Draw();
                     Console.WriteLine("============================================================");
                     Console.WriteLine("     Ao quebrar a pedra encontra: ");
                     GameManager.Instance.pickDrop();
@@ -78,7 +90,7 @@ namespace ProjetoUC
 
                 }
                 M.mapa[tempX, tempY] = M.espaco;
-                M.mapa[x, y] = M.player;
+                //M.mapa[x, y] = M.player;
                 pos.x = x;
                 pos.y = y;
             }

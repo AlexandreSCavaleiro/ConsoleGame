@@ -10,30 +10,34 @@ namespace ProjetoUC
 {
     class Menu : MonoBehaviour
     {
-        public ConsoleKey op;
-        public Persistence persisManager;
+        
         // instancia de singleton
         private Menu()
         {
             Run();
         }
         static private Menu instance;
-        static public Menu Instance => instance ?? (instance = new Menu());
+        static public Menu Instance => instance ??= new Menu();
 
-        
+        //attr
+        public ConsoleKey op;
+        public Persistence PersisM;
+
+        public override void Draw()
+        {
+            exibirMenu();
+        }
+
         public override void Update()
         {
-            if (!GameManager.Instance.minerando)
-            {
-                exibirMenu();
-                lancaMenu();
-
-            }
+            lancaMenu();
         }
 
         // Função que exibe o menu na tela
         public void exibirMenu()
         {
+            Console.SetCursorPosition(0, 0);
+            //Console.Clear();
             Console.WriteLine("""
                  =========================== Menu ===========================
                 
@@ -50,16 +54,10 @@ namespace ProjetoUC
                  """);
         }
 
-        // Função qua mantem o menu no topo do console
-        public void clean()
-        {
-            Console.Clear();
-            //exibirMenu();
-            //Console.WriteLine("============================================================");
-        }
-
+        // Função que requisita a entrada do usuário
         public void lancaMenu()
         {
+            if(!input) return;
 
             GameManager GM = GameManager.Instance;
 
@@ -67,15 +65,25 @@ namespace ProjetoUC
 
             op = Console.ReadKey(true).Key;
 
+            Console.Clear();
+            Console.SetCursorPosition(0,13);
             switch (op)
             {
                 //1. inicia mineração
                 case ConsoleKey.NumPad1:
                 case ConsoleKey.D1:
+                    
+                    GM.player.visible = true;
+                    GM.player.input = true;
 
-                    GM.minerando = true;
                     GM.mapa = new Map();
+                    GM.mapa.visible = true;
+                    GM.mapa.input = true;
 
+                    GM.menu.visible = false;
+                    GM.menu.input = false;
+
+                    Console.Clear();
                     break;
 
                 //2. total de pontos
@@ -83,7 +91,7 @@ namespace ProjetoUC
                 case ConsoleKey.D2: //total de pontos no inventario
                     Console.WriteLine($"""
 
-                            Voce tem {Jogador.Instance.inventario.totalPontos()} pontos
+                            Voce tem {GM.player.inventario.totalPontos()} pontos
                             
                         """);
 
@@ -96,7 +104,7 @@ namespace ProjetoUC
                             Seu inventário no momento: 
 
                         """);
-                    Jogador.Instance.inventario.showInv();
+                    GM.player.inventario.showInv();
 
                     break;
 
@@ -111,15 +119,15 @@ namespace ProjetoUC
                 //8. salva inventario
                 case ConsoleKey.NumPad8:
                 case ConsoleKey.D8:
-                    persisManager = new Persistence();
-                    persisManager.NovoInventário();
+                    PersisM = new Persistence();
+                    PersisM.NovoInventário();
                     break;
 
                 //9. carregar inventario
                 case ConsoleKey.NumPad9:
                 case ConsoleKey.D9:
-                    persisManager = new Persistence();
-                    persisManager.carregaInventario();
+                    PersisM = new Persistence();
+                    PersisM.carregaInventario();
                     break;
 
 
@@ -129,8 +137,8 @@ namespace ProjetoUC
                             Ok, até a proxima! Volte logo!
 
                         """);
-                    this.Stop();
-                    GM.Stop();
+                    //this.Stop();
+                    //GM.Stop();
                     break;
 
                 default:

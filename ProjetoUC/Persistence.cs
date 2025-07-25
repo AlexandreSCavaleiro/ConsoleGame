@@ -10,6 +10,7 @@ namespace ProjetoUC
 {
     class Persistence
     {
+        GameManager GM = GameManager.Instance;
         string path = "save/savefile.txt"; //caminho padrao relativo ao .exe do jogo
 
         public Persistence() //ao criar o obj
@@ -40,7 +41,7 @@ namespace ProjetoUC
 
 
             if (tecla == ConsoleKey.S) {
-                var InvJson = JsonSerializer.Serialize(Jogador.Instance.inventario.slots); //serializa o inventario como um json
+                var InvJson = JsonSerializer.Serialize(GM.player.inventario.slots); //serializa o inventario como um json
 
                 //Console.WriteLine(InvJson);
 
@@ -83,7 +84,7 @@ namespace ProjetoUC
                 var jString = File.ReadAllText(path); //le o testo e carrega na var jString
                 var InvJson = JsonSerializer.Deserialize<List<Slot>>(jString); // DEserializa o json em uma variavel 
 
-                Jogador.Instance.inventario.setInvTo(InvJson); //copia a lista para o inventario SUBSTITUI o que estava lá
+                GM.player.inventario.setInvTo(InvJson); //copia a lista para o inventario SUBSTITUI o que estava lá
 
                 //confirma o carregamento
                 Console.WriteLine("""
