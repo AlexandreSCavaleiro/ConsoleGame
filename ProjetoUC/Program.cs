@@ -11,8 +11,10 @@ namespace ProjetoUC
         
         public static void Main()
         {
+            Console.CursorVisible = false;
+
             GameManager GM = GameManager.Instance;
-     
+
         } 
     } 
 }
