@@ -16,6 +16,8 @@ namespace ProjetoUC
         public bool visible = false;
         public bool input = false;
 
+        public int speed = 100;
+
         public void Run()
         {
             rodando = true;
@@ -28,7 +30,7 @@ namespace ProjetoUC
                     while (rodando) {
                         Update();
                         LateUpdate();
-                        Thread.Sleep(100);
+                        Thread.Sleep(speed);
                     }
 
                     
