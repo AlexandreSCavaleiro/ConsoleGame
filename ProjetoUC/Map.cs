@@ -9,12 +9,7 @@ namespace ProjetoUC
 {
     class Map : MonoBehaviour
     {
-        
-        public Map()
-        {
-            Run();
-        }
-
+        public Map() { Run(); }
         //mapa vazio
         public Pixel[,] mapa;
 
@@ -130,6 +125,11 @@ namespace ProjetoUC
                 """);
             //Console.WriteLine(GameManager.Instance.minerando);
             Console.ReadKey(true);
+
+
+            GM.player.visible = true;
+            GM.player.input = true;
+
             Console.Clear();
         }
 

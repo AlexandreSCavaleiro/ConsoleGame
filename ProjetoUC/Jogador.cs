@@ -16,6 +16,7 @@ namespace ProjetoUC
             this.nome = "player";
             this.pixel = new Pixel('@', ConsoleColor.DarkYellow);
             this.inventario = new Inventario();
+            Run();
         }
 
         public string nome;
@@ -32,6 +33,7 @@ namespace ProjetoUC
 
         public override void Update()
         {
+            if (!input) return;
             //le a tecla do usuário
             var tecla = Console.ReadKey(true).Key;
             movimentar(tecla);
