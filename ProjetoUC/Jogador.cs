@@ -26,7 +26,7 @@ namespace ProjetoUC
 
         public override void Draw()
         {
-            Console.WriteLine($"{pos.x} {pos.y}");
+            //Console.WriteLine($"{pos.x} {pos.y}");
             Console.SetCursorPosition(pos.x, pos.y);
             pixel.show();
         }
@@ -81,14 +81,14 @@ namespace ProjetoUC
                 {
                     //TODO pickdrop
                     Console.Clear();
-                    //M.Draw();
+                    Console.SetCursorPosition(0, 20);
                     Console.WriteLine("============================================================");
                     Console.WriteLine("     Ao quebrar a pedra encontra: ");
                     GameManager.Instance.pickDrop();
-                    Console.WriteLine("Aperte uma tecla para prosseguir!  ");
+                    //Console.WriteLine("Aperte uma tecla para prosseguir!  ");
                     Console.WriteLine("============================================================");
 
-                    Console.ReadKey(true);
+                    //Console.ReadKey(true);
 
                 }
                 M.mapa[tempX, tempY] = M.espaco;

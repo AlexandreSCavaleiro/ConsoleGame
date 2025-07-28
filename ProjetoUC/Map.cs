@@ -88,7 +88,13 @@ namespace ProjetoUC
         public void Out()
         {
             Console.Clear();
+            GM.mapa.visible = false;
+            GM.mapa.input = false;
+            GM.player.visible = false;
+            GM.player.input = false;
+
             //Draw();
+            Console.SetCursorPosition(0, 20);
             Console.WriteLine("""
                         Voltando a superficie.....
                         Seu inventário depois da mineração: 
@@ -97,11 +103,7 @@ namespace ProjetoUC
             GameManager.Instance.player.inventario.showInv();
             Console.WriteLine(" > Aperte qualquer tecla pra continuar... ");
             Console.ReadKey(true);
-
-            Console.Clear();
             
-            GM.menu.visible = true;
-            GM.menu.input = true;
 
             this.Stop();
         }
@@ -136,13 +138,20 @@ namespace ProjetoUC
         public override void Start()
         {
             iniciarMapa(); //popule
-
         }
 
+        //Update ficará para a parte de clock(TODO) e maybe inimigos
         public override void Update()
         {
             
         }
 
+        public override void OnDestroy()
+        {
+            Console.Clear();
+
+            GM.menu.visible = true;
+            GM.menu.input = true;
+        } 
     }
 }
