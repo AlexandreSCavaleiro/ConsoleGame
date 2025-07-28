@@ -10,12 +10,8 @@ namespace ProjetoUC
 {
     class Menu : MonoBehaviour
     {
-        
         // instancia de singleton
-        private Menu()
-        {
-            Run();
-        }
+        private Menu(){ Run(); }
         static private Menu instance;
         static public Menu Instance => instance ??= new Menu();
 
@@ -73,15 +69,14 @@ namespace ProjetoUC
                 case ConsoleKey.NumPad1:
                 case ConsoleKey.D1:
                     
-                    GM.player.visible = true;
-                    GM.player.input = true;
+                    //desativa o menu
+                    GM.menu.visible = false;
+                    GM.menu.input = false;
+
 
                     GM.mapa = new Map();
                     GM.mapa.visible = true;
                     GM.mapa.input = true;
-
-                    GM.menu.visible = false;
-                    GM.menu.input = false;
 
                     Console.Clear();
                     break;
