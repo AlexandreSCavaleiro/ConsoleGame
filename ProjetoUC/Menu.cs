@@ -132,8 +132,8 @@ namespace ProjetoUC
                             Ok, até a proxima! Volte logo!
 
                         """);
-                    //this.Stop();
-                    //GM.Stop();
+                    this.Stop();
+                    GM.Stop();
                     break;
 
                 default:

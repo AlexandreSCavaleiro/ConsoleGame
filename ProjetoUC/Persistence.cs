@@ -34,7 +34,7 @@ namespace ProjetoUC
 
                             S. SIM      
                         QUALQUER TECLA. NAO
-
+                ============================================================
                 """);
 
             var tecla = Console.ReadKey(true).Key;
@@ -48,6 +48,7 @@ namespace ProjetoUC
                 File.WriteAllText(path, InvJson); //escreve no arquivo
 
                 //confirma o save
+                Console.SetCursorPosition(0, 20);
                 Console.WriteLine("""
                         
                     Inventário SUBSTÍTUIDO!
@@ -56,13 +57,15 @@ namespace ProjetoUC
             }
             else
             {
+                Console.SetCursorPosition(0, 20);
                 Console.WriteLine("""
                             
                             Operação Cancelada!
 
                         """);
             }
-
+            Console.ReadKey(true);
+            Console.Clear();
             //Console.WriteLine(InvJson);
         }
 
@@ -74,7 +77,7 @@ namespace ProjetoUC
                     TEM CERTEZA QUE QUER SUBSTITUIR O INVENTÁRIO?
 
                             S. SIM      N.NAO
-
+                ============================================================
                 """);
 
             var tecla = Console.ReadKey(true).Key;
@@ -87,6 +90,7 @@ namespace ProjetoUC
                 GM.player.inventario.setInvTo(InvJson); //copia a lista para o inventario SUBSTITUI o que estava lá
 
                 //confirma o carregamento
+                Console.SetCursorPosition(0, 20);
                 Console.WriteLine("""
                     
                     Inventário carregado!
@@ -95,14 +99,16 @@ namespace ProjetoUC
             }
             else
             {
+                Console.SetCursorPosition(0, 20);
                 Console.WriteLine("""
                     
                         Operação Cancelada!
                      
                     """);
             }
-
-                    //Console.WriteLine(InvJson);
+            Console.ReadKey(true);
+            Console.Clear();
+            //Console.WriteLine(InvJson);
 
         }
     }
