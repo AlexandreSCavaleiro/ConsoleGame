@@ -70,11 +70,6 @@ namespace ProjetoUC
                     break;
             }
 
-
-            if (M.mapa[x, y] == M.escada)
-            {
-                M.Out();
-            }
             if (M.mapa[x, y] != M.parede)
             {
                 if (M.mapa[x, y] == M.minerio)
@@ -101,6 +96,12 @@ namespace ProjetoUC
                 pos.x = tempX;
                 pos.y = tempY;
             }
+
+            if (M.mapa[x, y] == M.escada)
+            {
+                M.Out();
+            }
+
         }
     }
 }

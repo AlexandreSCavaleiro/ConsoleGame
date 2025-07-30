@@ -131,12 +131,15 @@ namespace ProjetoUC
             Draw();
         }
 
+        public override void LateUpdate()
+        {
+            if (player != null && player.visible) { player.Draw(); }
+        }
+
         public override void Draw()
         {
             if (mapa != null && mapa.visible) { mapa.Draw(); }
-            if (player != null && player.visible) { player.Draw(); }
-            if (menu != null && menu.visible) { menu.Draw();}
-
+            if (menu != null && menu.visible) { menu.Draw(); }
         }
 
     }

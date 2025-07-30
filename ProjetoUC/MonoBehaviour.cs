@@ -16,7 +16,7 @@ namespace ProjetoUC
         public bool visible = false;
         public bool input = false;
 
-        public int speed = 150;
+        public int speed = 120;
 
         public void Run()
         {
