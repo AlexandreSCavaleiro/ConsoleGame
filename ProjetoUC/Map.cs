@@ -23,13 +23,14 @@ namespace ProjetoUC
         //AxL do mapa 
         int largura = 40;
         int altura = 15;
+        int timer = 60;
 
         GameManager GM = GameManager.Instance;
 
         // Função de exibição do mapa 
         public override void Draw()
         {
-            Console.SetCursorPosition(0, 0);
+            Console.SetCursorPosition(0, 1);
 
             for (int y = 0; y < altura; y++)
             {
@@ -93,8 +94,13 @@ namespace ProjetoUC
             GM.player.visible = false;
             GM.player.input = false;
 
-            //Draw();
             Console.SetCursorPosition(0, 20);
+
+            if (timer == 0)
+            {
+                Console.WriteLine("   Você ficou sem tempo!! ");
+            }
+            
             Console.WriteLine("""
                         Voltando a superficie.....
                         Seu inventário depois da mineração: 
@@ -143,7 +149,12 @@ namespace ProjetoUC
         //Update ficará para a parte de clock(TODO) e maybe inimigos
         public override void Update()
         {
-            
+            this.timer -= 1;
+
+            if (this.timer <= 0) { Out(); }
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("    Timer: " + timer);
+            //if clock 0 out()
         }
 
         public override void OnDestroy()
