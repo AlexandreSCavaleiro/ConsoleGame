@@ -27,7 +27,7 @@ namespace ProjetoUC
         public override void Draw()
         {
             //Console.WriteLine($"{pos.x} {pos.y}");
-            Console.SetCursorPosition(pos.x, pos.y);
+            Console.SetCursorPosition(pos.x, pos.y+2);
             pixel.show();
         }
 
@@ -70,20 +70,20 @@ namespace ProjetoUC
                     break;
             }
 
-            if (M.mapa[x, y] != M.parede)
+            if (M.mapa[x, y] != M.parede)// ver se o mov é valido 
             {
                 if (M.mapa[x, y] == M.minerio)
                 {
-                    //TODO pickdrop
+                    M.mapa[x, y] = M.espaco;
                     Console.Clear();
                     Console.SetCursorPosition(0, 20);
                     Console.WriteLine("============================================================");
                     Console.WriteLine("     Ao quebrar a pedra encontra: ");
                     GameManager.Instance.pickDrop();
-                    //Console.WriteLine("Aperte uma tecla para prosseguir!  ");
+                    Console.WriteLine("Aperte uma tecla para prosseguir!  ");
                     Console.WriteLine("============================================================");
 
-                    //Console.ReadKey(true);
+                    Console.ReadKey(true);
 
                 }
                 M.mapa[tempX, tempY] = M.espaco;

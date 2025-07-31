@@ -23,14 +23,20 @@ namespace ProjetoUC
         //AxL do mapa 
         int largura = 40;
         int altura = 15;
-        int timer = 60;
+        int timer = 240;
 
         GameManager GM = GameManager.Instance;
 
         // Função de exibição do mapa 
         public override void Draw()
         {
-            Console.SetCursorPosition(0, 1);
+            Console.SetCursorPosition(0, 0);
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("########################################");
+            if (timer > 120) { Console.ForegroundColor = ConsoleColor.Green; }else
+                if (timer > 10) { Console.ForegroundColor = ConsoleColor.DarkYellow; }else
+                    if (timer > 0) { Console.ForegroundColor = ConsoleColor.Red; }
+            Console.WriteLine($"    {timer}");
 
             for (int y = 0; y < altura; y++)
             {
@@ -88,11 +94,13 @@ namespace ProjetoUC
         // Função teste para saida do mapa
         public void Out()
         {
-            Console.Clear();
+            
             GM.mapa.visible = false;
             GM.mapa.input = false;
             GM.player.visible = false;
             GM.player.input = false;
+
+            Console.Clear();
 
             Console.SetCursorPosition(0, 20);
 
@@ -152,9 +160,9 @@ namespace ProjetoUC
             this.timer -= 1;
 
             if (this.timer <= 0) { Out(); }
-            Console.SetCursorPosition(0, 0);
-            Console.WriteLine("    Timer: " + timer);
+           
             //if clock 0 out()
+
         }
 
         public override void OnDestroy()
