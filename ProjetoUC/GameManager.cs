@@ -111,7 +111,7 @@ namespace ProjetoUC
             mineriosList = new List<Drop>();
             joiasList = new List<Drop>();
 
-            raridadeJoia = 85; //sim, hardcodded
+            raridadeJoia = 70; //sim, hardcodded
 
             fillItems(); // preenche a lista de itens
 

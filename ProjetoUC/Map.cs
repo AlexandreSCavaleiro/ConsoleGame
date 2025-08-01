@@ -23,7 +23,7 @@ namespace ProjetoUC
         //AxL do mapa 
         int largura = 40;
         int altura = 15;
-        int timer = 240;
+        int timer = 180;
 
         GameManager GM = GameManager.Instance;
 
@@ -33,8 +33,8 @@ namespace ProjetoUC
             Console.SetCursorPosition(0, 0);
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("########################################");
-            if (timer > 120) { Console.ForegroundColor = ConsoleColor.Green; }else
-                if (timer > 10) { Console.ForegroundColor = ConsoleColor.DarkYellow; }else
+            if (timer > 90) { Console.ForegroundColor = ConsoleColor.Green; }else
+                if (timer > 45) { Console.ForegroundColor = ConsoleColor.DarkYellow; }else
                     if (timer > 0) { Console.ForegroundColor = ConsoleColor.Red; }
             Console.WriteLine($"    {timer}");
 
@@ -115,6 +115,7 @@ namespace ProjetoUC
                     """);
 
             GameManager.Instance.player.inventario.showInv();
+            Console.WriteLine("  Total de pontos :" + GameManager.Instance.player.inventario.totalPontos());
             Console.WriteLine(" > Aperte qualquer tecla pra continuar... ");
             Console.ReadKey(true);
             
